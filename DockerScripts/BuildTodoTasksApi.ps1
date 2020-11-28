@@ -1,0 +1,1 @@
+﻿docker build -f ./TodoTasks.Api/Dockerfile -t super_todo/tasks_api:0.1 .

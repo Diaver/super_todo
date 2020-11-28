@@ -31,15 +31,15 @@ namespace WebApp.Controllers
         }
 
         [HttpGet("getById/{todoTaskId}")]
-        public Task<TodoTaskResponse> GetTodoTaskById([FromQuery] string todoTaskId)
+        public async Task<TodoTaskResponse> GetTodoTaskById(string todoTaskId)
         {
-            throw new NotImplementedException();
+            return await _todoTasksApi.GetTodoTaskById(todoTaskId);
         }
 
         [HttpPut("add")]
-        public Task AddTodoTasks([FromBody] TodoTaskResponse todoTaskResponse)
+        public async Task AddTodoTasks([FromBody] TodoTaskResponse todoTaskResponse)
         {
-            throw new NotImplementedException();
+            await _todoTasksApi.AddTodoTasks(todoTaskResponse);
         }
     }
 }

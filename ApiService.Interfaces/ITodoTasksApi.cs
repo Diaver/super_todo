@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ApiService.Models;
 using ApiService.Models.Api.Response;
 using Refit;
 
@@ -8,13 +7,13 @@ namespace ApiService.Interfaces
 {
     public interface ITodoTasksApi
     {
-        [Get("/getAll")]
+        [Get("/todoTasks/getAll")]
         Task<List<TodoTaskResponse>> GetTodoTasks();
 
-        [Get("/getById/{todoTaskId}")]
-        Task<TodoTaskResponse> GetTodoTaskById([AliasAs("id")] string todoTaskId);
+        [Get("/todoTasks/getById/{todoTaskId}")]
+        Task<TodoTaskResponse> GetTodoTaskById(string todoTaskId);
 
-        [Put("/add")]
+        [Put("/todoTasks/add")]
         Task AddTodoTasks(TodoTaskResponse todoTaskResponse);
     }
 }

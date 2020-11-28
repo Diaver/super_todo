@@ -37,8 +37,6 @@ namespace Tasks.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoTasks.Api v1");
                 c.RoutePrefix = "swagger";
             });
-            
-           // app.UseHttpsRedirection();
 
             app.UseRouting();
 

@@ -1,0 +1,1 @@
+﻿docker build -f ./WebApp/Dockerfile -t super_todo/web_app:0.1 .

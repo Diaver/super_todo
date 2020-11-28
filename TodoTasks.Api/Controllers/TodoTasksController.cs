@@ -12,11 +12,11 @@ namespace Tasks.Api.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    public class TodoTasksApiController : ControllerBase, ITodoTasksApi
+    public class TodoTasksController : ControllerBase, ITodoTasksApi
     {
-        private readonly ILogger<TodoTasksApiController> _logger;
+        private readonly ILogger<TodoTasksController> _logger;
 
-        public TodoTasksApiController(ILogger<TodoTasksApiController> logger)
+        public TodoTasksController(ILogger<TodoTasksController> logger)
         {
             _logger = logger;
         }
