@@ -25,6 +25,7 @@
     <ItemGroup>
       <ProjectReference Include="..\ApiService.Interfaces\ApiService.Interfaces.csproj" />
       <ProjectReference Include="..\ApiService.Models\ApiService.Models.csproj" />
+      <ProjectReference Include="..\TodoTasks.Database\TodoTasks.Database.csproj" />
     </ItemGroup>
 
 </Project>

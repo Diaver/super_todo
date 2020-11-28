@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ApiService.Interfaces;
-using ApiService.Models;
 using ApiService.Models.Api.Response;
 using Microsoft.Extensions.Configuration;
 using Refit;
