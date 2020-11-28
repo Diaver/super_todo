@@ -7,6 +7,7 @@ WORKDIR /app
 COPY ["TodoTasks.Api/TodoTasks.Api.csproj", "TodoTasks.Api/"]
 COPY ["ApiService.Interfaces/ApiService.Interfaces.csproj", "ApiService.Interfaces/"]
 COPY ["ApiService.Models/ApiService.Models.csproj", "ApiService.Models/"]
+COPY ["Services/Services.csproj", "Services/"]
 RUN dotnet restore "TodoTasks.Api/TodoTasks.Api.csproj"
 
 

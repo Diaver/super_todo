@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Services;
 using TodoTasks.Database;
 
 namespace Tasks.Api
@@ -23,9 +24,16 @@ namespace Tasks.Api
         {
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "TodoTasks.Api", Version = "v1"}); });
+            RegisterServices(services);
             ApplyMigrations(services);
         }
-        
+
+        private void RegisterServices(IServiceCollection services)
+        {
+            services.AddScoped<IAppConfigurationProvider, AppConfigurationProvider>();
+            services.AddScoped<ITodoTasksDbContextFactory, TodoTasksDbContextFactory>();
+        }
+
         private void ApplyMigrations(IServiceCollection services)
         {
             ServiceProvider sp = services.BuildServiceProvider();
