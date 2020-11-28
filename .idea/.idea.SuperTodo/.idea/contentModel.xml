@@ -60,6 +60,7 @@
           <e p="node_modules\@jest\transform" t="IncludeRecursive" />
           <e p="node_modules\@jest\types" t="IncludeRecursive" />
           <e p="node_modules\@material-ui\core" t="IncludeRecursive" />
+          <e p="node_modules\@material-ui\icons" t="IncludeRecursive" />
           <e p="node_modules\@material-ui\styles" t="IncludeRecursive" />
           <e p="node_modules\@material-ui\system" t="IncludeRecursive" />
           <e p="node_modules\@material-ui\types" t="IncludeRecursive" />
@@ -317,9 +318,14 @@
               <e p="rootLayout" t="Include">
                 <e p="RootLayout.tsx" t="Include" />
               </e>
+              <e p="tasks" t="Include">
+                <e p="Tasks.tsx" t="Include" />
+                <e p="tasksSlice.ts" t="Include" />
+              </e>
             </e>
             <e p="index.tsx" t="Include" />
             <e p="logo.svg" t="Include" />
+            <e p="react-app-env.d.ts" t="Include" />
             <e p="services" t="Include">
               <e p="history.ts" t="Include" />
             </e>

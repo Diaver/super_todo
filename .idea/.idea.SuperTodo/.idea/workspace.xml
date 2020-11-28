@@ -24,20 +24,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f055db4-e86d-4bdb-bdc2-3d517e9cdab8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DockerScripts/BuildAllImages.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DockerScripts/BuildVolumes.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DockerScripts/RemoveUnusedImages.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DockerScripts/RunDockerCompose.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TasksApi/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TasksApi/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApp/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApp/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApp/ClientApp/src/features/tasks/Tasks.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApp/ClientApp/src/features/tasks/tasksSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperTodo/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperTodo/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SuperTodo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SuperTodo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperTodo.sln" beforeDir="false" afterPath="$PROJECT_DIR$/SuperTodo.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApp/ClientApp/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/ClientApp/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApp/WebApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/WebApp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TasksApi/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/TasksApi/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/ClientApp/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/ClientApp/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/ClientApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/ClientApp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/ClientApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/ClientApp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/ClientApp/src/app/HistoryBrowserRouter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/ClientApp/src/app/HistoryBrowserRouter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/ClientApp/src/app/rootStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/ClientApp/src/app/rootStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/ClientApp/src/features/mainLayout/MainLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/ClientApp/src/features/mainLayout/MainLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/Properties/launchSettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,14 +52,11 @@
         <option value="$PROJECT_DIR$/WebApp/ApiControllers/WeatherForecastController.cs" />
         <option value="$PROJECT_DIR$/WebApp/ClientApp/src/services/history.ts" />
         <option value="$PROJECT_DIR$/WebApp/ClientApp/src/features/pageNotFound/PageNotFound.tsx" />
-        <option value="$PROJECT_DIR$/WebApp/ClientApp/src/app/HistoryBrowserRouter.tsx" />
         <option value="$PROJECT_DIR$/WebApp/ClientApp/src/features/rootLayout/RootLayout.tsx" />
-        <option value="$PROJECT_DIR$/WebApp/ClientApp/src/features/mainLayout/MainLayout.tsx" />
         <option value="$PROJECT_DIR$/WebApp/ClientApp/src/features/counter/counterSlice.ts" />
         <option value="$PROJECT_DIR$/WebApp/ClientApp/public/index.html" />
         <option value="$PROJECT_DIR$/WebApp/ClientApp/package.json" />
         <option value="$PROJECT_DIR$/WebApp/.gitignore" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/WebApp/WebApp.csproj" />
         <option value="$PROJECT_DIR$/WebApp/ClientApp/src/index.tsx" />
         <option value="$PROJECT_DIR$/TasksApi/Startup.cs" />
@@ -72,6 +68,14 @@
         <option value="$PROJECT_DIR$/WebApp/Dockerfile" />
         <option value="$PROJECT_DIR$/TasksApi/Dockerfile" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/WebApp/Properties/launchSettings.json" />
+        <option value="$PROJECT_DIR$/TasksApi/Properties/launchSettings.json" />
+        <option value="$PROJECT_DIR$/WebApp/ClientApp/src/app/HistoryBrowserRouter.tsx" />
+        <option value="$PROJECT_DIR$/WebApp/ClientApp/src/app/rootStore.ts" />
+        <option value="$PROJECT_DIR$/WebApp/ClientApp/src/features/tasks/tasksSlice.ts" />
+        <option value="$PROJECT_DIR$/WebApp/ClientApp/src/features/tasks/Tasks.tsx" />
+        <option value="$PROJECT_DIR$/WebApp/ClientApp/src/features/mainLayout/MainLayout.tsx" />
       </list>
     </option>
   </component>
@@ -95,25 +99,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebApp: Debug">
-    <configuration name="TasksApi" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+    <configuration name="TasksApi:Debug" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/TasksApi/TasksApi.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v5.0" />
       <option name="LAUNCH_PROFILE_NAME" value="TasksApi" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
-    <configuration name="TasksApi: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/TasksApi/TasksApi.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v5.0" />
-      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -140,6 +129,10 @@
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.TasksApi:Debug" />
+      <item itemvalue=".NET Launch Settings Profile.WebApp: Debug" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -153,7 +146,8 @@
       <workItem from="1606509534650" duration="153000" />
       <workItem from="1606509707558" duration="4711000" />
       <workItem from="1606515466670" duration="587000" />
-      <workItem from="1606516079608" duration="5745000" />
+      <workItem from="1606516079608" duration="8082000" />
+      <workItem from="1606530563392" duration="3404000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1606515177283</created>
@@ -162,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606515177283</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added docker compose run">
+      <created>1606521887932</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606521887933</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,29 +184,30 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Added docker compose run" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added docker compose run" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="816" y="375" width="1092" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606509924245">
+    <state x="816" y="375" width="1092" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606534477209">
       <screen x="164" y="0" width="2396" height="1440" />
     </state>
-    <state x="816" y="375" width="1092" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog/164.0.2396.1440@164.0.2396.1440" timestamp="1606509924245" />
-    <state width="1449" height="413" key="GridCell.Tab.0.bottom" timestamp="1606514616019">
+    <state x="816" y="375" width="1092" height="739" key="#com.intellij.execution.impl.EditConfigurationsDialog/164.0.2396.1440@164.0.2396.1440" timestamp="1606534477209" />
+    <state width="2351" height="410" key="GridCell.Tab.0.bottom" timestamp="1606522661189">
       <screen x="164" y="0" width="2396" height="1440" />
     </state>
-    <state width="1449" height="413" key="GridCell.Tab.0.bottom/164.0.2396.1440@164.0.2396.1440" timestamp="1606514616019" />
-    <state width="1449" height="413" key="GridCell.Tab.0.center" timestamp="1606514616019">
+    <state width="2351" height="410" key="GridCell.Tab.0.bottom/164.0.2396.1440@164.0.2396.1440" timestamp="1606522661189" />
+    <state width="2351" height="410" key="GridCell.Tab.0.center" timestamp="1606522661189">
       <screen x="164" y="0" width="2396" height="1440" />
     </state>
-    <state width="1449" height="413" key="GridCell.Tab.0.center/164.0.2396.1440@164.0.2396.1440" timestamp="1606514616019" />
-    <state width="1449" height="413" key="GridCell.Tab.0.left" timestamp="1606514616018">
+    <state width="2351" height="410" key="GridCell.Tab.0.center/164.0.2396.1440@164.0.2396.1440" timestamp="1606522661189" />
+    <state width="2351" height="410" key="GridCell.Tab.0.left" timestamp="1606522661189">
       <screen x="164" y="0" width="2396" height="1440" />
     </state>
-    <state width="1449" height="413" key="GridCell.Tab.0.left/164.0.2396.1440@164.0.2396.1440" timestamp="1606514616018" />
-    <state width="1449" height="413" key="GridCell.Tab.0.right" timestamp="1606514616019">
+    <state width="2351" height="410" key="GridCell.Tab.0.left/164.0.2396.1440@164.0.2396.1440" timestamp="1606522661189" />
+    <state width="2351" height="410" key="GridCell.Tab.0.right" timestamp="1606522661189">
       <screen x="164" y="0" width="2396" height="1440" />
     </state>
-    <state width="1449" height="413" key="GridCell.Tab.0.right/164.0.2396.1440@164.0.2396.1440" timestamp="1606514616019" />
+    <state width="2351" height="410" key="GridCell.Tab.0.right/164.0.2396.1440@164.0.2396.1440" timestamp="1606522661189" />
     <state x="954" y="452" key="Rider.ProjectTemplateDialog.Size" timestamp="1606517367396">
       <screen x="164" y="0" width="2396" height="1440" />
     </state>
@@ -214,10 +216,10 @@
       <screen x="164" y="0" width="2396" height="1440" />
     </state>
     <state x="863" y="365" key="SettingsEditor/164.0.2396.1440@164.0.2396.1440" timestamp="1606516033918" />
-    <state x="954" y="438" key="Vcs.Push.Dialog.v2" timestamp="1606515178824">
+    <state x="954" y="438" key="Vcs.Push.Dialog.v2" timestamp="1606521890149">
       <screen x="164" y="0" width="2396" height="1440" />
     </state>
-    <state x="954" y="438" key="Vcs.Push.Dialog.v2/164.0.2396.1440@164.0.2396.1440" timestamp="1606515178824" />
+    <state x="954" y="438" key="Vcs.Push.Dialog.v2/164.0.2396.1440@164.0.2396.1440" timestamp="1606521890149" />
     <state x="1221" y="372" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1606515071309">
       <screen x="164" y="0" width="2396" height="1440" />
     </state>

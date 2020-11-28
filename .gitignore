@@ -3,7 +3,7 @@
 
 /WebApp/ClientApp/node_modules
 /WebApp/ClientApp/build
-
+/.idea/
 # User-specific files
 *.suo
 *.user

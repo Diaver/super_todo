@@ -4,6 +4,7 @@ import {MainLayout} from "../features/mainLayout/MainLayout";
 import history from "../services/history";
 import {PageNotFound} from "../features/pageNotFound/PageNotFound";
 import {Loader} from "./Loader";
+import {Tasks} from "../features/tasks/Tasks";
 
 export default class HistoryBrowserRouter extends BrowserRouter {
     render() {
@@ -12,7 +13,7 @@ export default class HistoryBrowserRouter extends BrowserRouter {
                 <Switch>
                     <Route exact path="/">
                         <MainLayout showSearchBar={true}>
-                            <Loader/>
+                            <Tasks/>
                         </MainLayout>
                     </Route>
                  
