@@ -1,6 +1,5 @@
 import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import { store } from './app/rootStore';
 import { Provider } from 'react-redux';
 import {CssBaseline, createMuiTheme, MuiThemeProvider} from "@material-ui/core";

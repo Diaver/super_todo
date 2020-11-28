@@ -1,0 +1,69 @@
+version: '3.2'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: todo_container_rabbitmq
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmquser
+      - RABBITMQ_DEFAULT_PASS=DEBmbwkSrzy9D1T9cJfa
+
+  sqlserver:
+    image: microsoft/mssql-server-linux:latest
+    container_name: todo_container_sqlserver
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+    ports:
+      - "1434:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Developer
+      - SA_PASSWORD=8jkGh47hnDw89Haq8LN2
+
+  mailserver:
+    image: djfarrelly/maildev
+    container_name: todo_container_mailserver
+    ports:
+      - "25:25"
+      - "4000:80"
+
+  logserver:
+    image: datalust/seq:latest
+    container_name: todo_container_logserver
+    ports:
+      - "5341:80"
+    environment:
+      - ACCEPT_EULA=Y
+
+  tasks_api:
+    image: super_todo/tasks_api:0.1
+    build: TasksApi
+    container_name: todo_container_tasks_api
+    depends_on:
+      - rabbitmq
+      - sqlserver
+    ports:
+      - "5000:5000"
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      
+  web_app:
+    image: super_todo/web_app:0.1
+    build: WebApp
+    container_name: todo_container_web_app
+    depends_on:
+      - tasks_api
+    ports:
+      - "7000:7000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+
+volumes:
+  sqlserverdata:
+    external: true
+  rabbitmqdata:
+    external: true

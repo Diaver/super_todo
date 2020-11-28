@@ -8,7 +8,32 @@
     <e p="D:\Projects\super_todo" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
       <e p="SuperTodo.sln" t="IncludeFlat" />
+      <e p="TasksApi" t="IncludeRecursive">
+        <e p=".dockerignore" t="Include" />
+        <e p="ApiControllers" t="Include">
+          <e p="WeatherForecastController.cs" t="Include" />
+        </e>
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Dockerfile" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="TasksApi.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="TasksApi.csproj" t="IncludeRecursive" />
+        <e p="WeatherForecast.cs" t="Include" />
+      </e>
       <e p="WebApp" t="IncludeRecursive">
+        <e p=".dockerignore" t="Include" />
         <e p="ApiControllers" t="Include">
           <e p="WeatherForecastController.cs" t="Include" />
         </e>
@@ -301,6 +326,7 @@
           </e>
           <e p="tsconfig.json" t="Include" />
         </e>
+        <e p="Dockerfile" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
