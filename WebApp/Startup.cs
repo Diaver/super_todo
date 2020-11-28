@@ -1,3 +1,4 @@
+using ApiService.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApp.ApiClients;
 
 namespace WebApp
 {
@@ -28,6 +30,14 @@ namespace WebApp
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            
+            RegisterServices(services);
+        }
+
+        private void RegisterServices(IServiceCollection services)
+        {
+            // add custom services
+            services.AddHttpClient<ITodoTasksApi, TodoTasksApiClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

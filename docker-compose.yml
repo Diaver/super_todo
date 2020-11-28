@@ -41,7 +41,7 @@ services:
 
   tasks_api:
     image: super_todo/tasks_api:0.1
-    build: TasksApi
+    build: TodoTasks.Api
     container_name: todo_container_tasks_api
     depends_on:
       - rabbitmq

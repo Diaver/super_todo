@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <LangVersion>8</LangVersion>
+        <RootNamespace>Tasks.Api</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,6 +14,17 @@
       <Content Update="appsettings.Development.json">
         <DependentUpon>appsettings.json</DependentUpon>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update=".dockerignore">
+        <DependentUpon>Dockerfile</DependentUpon>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ApiService.Interfaces\ApiService.Interfaces.csproj" />
+      <ProjectReference Include="..\ApiService.Models\ApiService.Models.csproj" />
     </ItemGroup>
 
 </Project>

@@ -4,13 +4,15 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS  build-env
 WORKDIR /app
 
 # Copy necessary files and restore as distinct layer
-COPY ["TasksApi/TasksApi.csproj", "TasksApi/"]
-RUN dotnet restore "TasksApi/TasksApi.csproj"
+COPY ["TodoTasks.Api/TodoTasks.Api.csproj", "TodoTasks.Api/"]
+COPY ["ApiService.Interfaces/ApiService.Interfaces.csproj", "ApiService.Interfaces/"]
+COPY ["ApiService.Models/ApiService.Models.csproj", "ApiService.Models/"]
+RUN dotnet restore "TodoTasks.Api/TodoTasks.Api.csproj"
 
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish "TasksApi/TasksApi.csproj" -c Release -o out
+RUN dotnet publish "TodoTasks.Api/TodoTasks.Api.csproj" -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
@@ -22,4 +24,4 @@ ENV ASPNETCORE_URLS http://*:5000
 HEALTHCHECK --interval=30s --timeout=3s --retries=1 CMD curl --silent --fail http://localhost:5000/hc || exit 1
 
 # Start
-ENTRYPOINT ["dotnet", "TasksApi.dll"]
+ENTRYPOINT ["dotnet", "TodoTasks.Api.dll"]

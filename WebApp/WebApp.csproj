@@ -11,6 +11,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.10" />
+        <PackageReference Include="Refit" Version="5.2.4" />
+        <PackageReference Include="Refit.HttpClientFactory" Version="5.2.4" />
     </ItemGroup>
 
     <ItemGroup>
@@ -24,6 +26,14 @@
         <None Update=".dockerignore">
           <DependentUpon>Dockerfile</DependentUpon>
         </None>
+        <Content Update="appsettings.Production.json">
+          <DependentUpon>appsettings.json</DependentUpon>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ApiService.Interfaces\ApiService.Interfaces.csproj" />
+      <ProjectReference Include="..\ApiService.Models\ApiService.Models.csproj" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

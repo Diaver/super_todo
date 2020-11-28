@@ -7,6 +7,8 @@ WORKDIR /app
 
 # Copy necessary files and restore as distinct layer
 COPY ["WebApp/WebApp.csproj", "WebApp/"]
+COPY ["ApiService.Interfaces/ApiService.Interfaces.csproj", "ApiService.Interfaces/"]
+COPY ["ApiService.Models/ApiService.Models.csproj", "ApiService.Models/"]
 RUN dotnet restore "WebApp/WebApp.csproj"
 
 
