@@ -41,6 +41,7 @@ namespace WebApp
         {
             // add custom services
             services.AddHttpClient<ITodoTasksApi, TodoTasksApiClient>();
+            services.AddHttpClient<IUsersApi, UsersApiClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

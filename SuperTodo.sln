@@ -12,6 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoTasks.Database", "TodoT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{5C2341C7-CB7F-402D-A038-81BF21267179}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Api", "Users.Api\Users.Api.csproj", "{97BCF47B-B2AB-4851-99CA-9B241EF6FD0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Database", "Users.Database\Users.Database.csproj", "{CCB09FD4-17F6-4DBB-92BD-F12BBB34B287}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,5 +50,13 @@ Global
 		{5C2341C7-CB7F-402D-A038-81BF21267179}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C2341C7-CB7F-402D-A038-81BF21267179}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5C2341C7-CB7F-402D-A038-81BF21267179}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{97BCF47B-B2AB-4851-99CA-9B241EF6FD0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97BCF47B-B2AB-4851-99CA-9B241EF6FD0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97BCF47B-B2AB-4851-99CA-9B241EF6FD0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97BCF47B-B2AB-4851-99CA-9B241EF6FD0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB09FD4-17F6-4DBB-92BD-F12BBB34B287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB09FD4-17F6-4DBB-92BD-F12BBB34B287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB09FD4-17F6-4DBB-92BD-F12BBB34B287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB09FD4-17F6-4DBB-92BD-F12BBB34B287}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
