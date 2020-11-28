@@ -1,25 +1,35 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/rootStore';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {RootState} from '../../app/rootStore';
+import {ITaskResponse} from "../../apiModels/response/ITaskResponse";
 
 interface TasksState {
-  items: string[];
+    items: ITaskResponse[];
+    taskIndex: number;
 }
 
 const initialState: TasksState = {
-  items: [],
+    items: [],
+    taskIndex: 0
 };
 
 export const tasksSlice = createSlice({
-  name: 'tasks',
-  initialState,
-  reducers: {
-    addItem: (state, action: PayloadAction<string>) => {
-      state.items = [...state.items, action.payload];
+    name: 'tasks',
+    initialState,
+    reducers: {
+        addItem: (state, action: PayloadAction<string>) => {
+            const newTask: ITaskResponse = {
+                text: action.payload,
+                taskId: state.taskIndex.toString(),
+                userId: "userId"
+
+            };
+            state.items = [...state.items, newTask];
+            state.taskIndex = state.taskIndex + 1;
+        },
+        deleteItem: (state, action: PayloadAction<string>) => {
+            state.items = state.items.filter(item => item.taskId !== action.payload);
+        },
     },
-    deleteItem: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter(item => item !== action.payload);
-    },
-  },
 });
 
 

@@ -35,29 +35,30 @@ export function Tasks() {
     const classes = useStyles();
     const items = useSelector(itemsSelector);
     const dispatch = useDispatch();
+    const [checked, setChecked] = React.useState([]);
     const [newItemText, setNewItemText] = React.useState<string>("");
 
     const handleToggle = (value: string) => () => {
-        /*    const currentIndex = checked.indexOf(value);
+           // const currentIndex = checked.indexOf(value);
             const newChecked = [...checked];
     
-            if (currentIndex === -1) {
+            /*if (currentIndex === -1) {
                 newChecked.push(value);
             } else {
                 newChecked.splice(currentIndex, 1);
-            }
+            }*/
     
-            setChecked(newChecked);*/
+            setChecked(newChecked);
     };
 
     return (
         <Container component="main" maxWidth="md">
             <List>
-                {items.map((value) => {
-                    const labelId = `checkbox-list-label-${value}`;
+                {items.map((item) => {
+                    const labelId = `checkbox-list-label-${item.taskId}`;
 
                     return (
-                        <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)} className={classes.itemAdded}>
+                        <ListItem key={item.taskId} role={undefined} dense button onClick={handleToggle(item.taskId)} className={classes.itemAdded}>
                             <ListItemIcon>
                                 <Checkbox
                                     edge="start"
@@ -66,9 +67,9 @@ export function Tasks() {
                                     inputProps={{'aria-labelledby': labelId}}
                                 />
                             </ListItemIcon> 
-                            <ListItemText id={labelId}  primary={value}/>
+                            <ListItemText id={labelId}  primary={item.text}/>
                             <ListItemSecondaryAction >
-                                <IconButton edge="end" aria-label="comments" onClick={()=> dispatch(tasksSlice.actions.deleteItem(value))}>
+                                <IconButton edge="end" aria-label="comments" onClick={()=> dispatch(tasksSlice.actions.deleteItem(item.taskId))}>
                                     <DeleteIcon/>
                                 </IconButton>
                             </ListItemSecondaryAction>
