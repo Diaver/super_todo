@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ApiService.Interfaces;
+using ApiService.Models.Api.Common;
 using ApiService.Models.Api.Response;
 using Microsoft.Extensions.Configuration;
 using Refit;
@@ -16,12 +17,12 @@ namespace WebApp.ApiClients
         public TodoTasksApiClient(IConfiguration config, HttpClient httpClient)
         {
             string apiHostAndPort = config.GetSection("APIServiceLocations").GetValue<string>("TasksAPI");
-            httpClient.BaseAddress = new Uri($"http://{apiHostAndPort}/api");
+            httpClient.BaseAddress = new Uri($"http://{apiHostAndPort}/api/todoTasks");
 
             _restClient = RestService.For<ITodoTasksApi>(httpClient);
         }
 
-        public Task<List<TodoTaskResponse>> GetTodoTasks()
+        public Task<ApiResult<IEnumerable<TodoTaskResponse>>> GetTodoTasks()
         {
             return _restClient.GetTodoTasks();
         }

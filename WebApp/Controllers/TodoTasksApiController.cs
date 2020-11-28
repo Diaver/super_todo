@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models;
+using ApiService.Models.Api.Common;
 using ApiService.Models.Api.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -25,7 +26,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet("getAll")]
-        public async Task<List<TodoTaskResponse>> GetTodoTasks()
+        public async  Task<ApiResult<IEnumerable<TodoTaskResponse>>> GetTodoTasks()
         {
             return await _todoTasksApi.GetTodoTasks();
         }

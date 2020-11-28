@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Database.Models
+namespace TodoTasks.Database.Models
 {
     public abstract class DbEntity
     {

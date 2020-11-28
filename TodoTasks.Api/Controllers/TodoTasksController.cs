@@ -7,6 +7,7 @@ using ApiService.Models.Api.Common;
 using ApiService.Models.Api.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Tasks.Api.Services;
 
 namespace Tasks.Api.Controllers
 {
@@ -15,16 +16,19 @@ namespace Tasks.Api.Controllers
     public class TodoTasksController : ControllerBase, ITodoTasksApi
     {
         private readonly ILogger<TodoTasksController> _logger;
+        private readonly ITodoTasksService _todoTasksService;
 
-        public TodoTasksController(ILogger<TodoTasksController> logger)
+        public TodoTasksController(ILogger<TodoTasksController> logger, ITodoTasksService todoTasksService)
         {
             _logger = logger;
+            _todoTasksService = todoTasksService;
         }
 
         [HttpGet("getAll")]
-        public Task<List<TodoTaskResponse>> GetTodoTasks()
+        public Task<ApiResult<IEnumerable<TodoTaskResponse>>> GetTodoTasks()
         {
-            return Task.FromResult(new List<TodoTaskResponse>
+            return _todoTasksService.GetAllAsync();
+            /*return Task.FromResult(new List<TodoTaskResponse>
             {
                 new TodoTaskResponse
                 {
@@ -40,7 +44,7 @@ namespace Tasks.Api.Controllers
                     Text = "task 2",
                     Status = TodoTaskStatus.Completed
                 }
-            });
+            });*/
         }
 
         [HttpGet("getById/{todoTaskId}")]

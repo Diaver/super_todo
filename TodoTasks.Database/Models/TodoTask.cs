@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using ApiService.Models.Api.Common;
-using Database.Models;
 
 namespace TodoTasks.Database.Models
 {

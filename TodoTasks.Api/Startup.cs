@@ -6,7 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Services;
+using Tasks.Api.Services;
 using TodoTasks.Database;
+using TodoTasks.Database.Repositories;
 
 namespace Tasks.Api
 {
@@ -32,6 +34,9 @@ namespace Tasks.Api
         {
             services.AddScoped<IAppConfigurationProvider, AppConfigurationProvider>();
             services.AddScoped<ITodoTasksDbContextFactory, TodoTasksDbContextFactory>();
+            services.AddScoped<ITodoTasksService, TodoTasksService>();
+            
+            services.AddTransient<ITodoTaskRepository, TodoTaskRepository>();
         }
 
         private void ApplyMigrations(IServiceCollection services)
