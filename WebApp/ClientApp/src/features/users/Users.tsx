@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 import {Container, TextField, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {itemsSelector, tasksSlice} from "./tasksSlice";
+import {itemsSelector, usersSlice} from "./usersSlice";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export function Tasks() {
+export function Users() {
     const classes = useStyles();
     const items = useSelector(itemsSelector);
     const dispatch = useDispatch();
@@ -54,7 +54,7 @@ export function Tasks() {
     return (
         <Container component="main" maxWidth="md">
             <Typography variant={"h4"}>
-                Tasks
+                Users
             </Typography>
             <List>
                 {items.map((item) => {
@@ -72,7 +72,7 @@ export function Tasks() {
                             </ListItemIcon> 
                             <ListItemText id={labelId}  primary={item.text}/>
                             <ListItemSecondaryAction >
-                                <IconButton edge="end" aria-label="comments" onClick={()=> dispatch(tasksSlice.actions.deleteItem(item.taskId))}>
+                                <IconButton edge="end" aria-label="comments" onClick={()=> dispatch(usersSlice.actions.deleteItem(item.taskId))}>
                                     <DeleteIcon/>
                                 </IconButton>
                             </ListItemSecondaryAction>
@@ -88,7 +88,7 @@ export function Tasks() {
                 onChange={event => setNewItemText(event.target.value)}
                 onKeyPress={ev => {
                     if (ev.key === 'Enter') {
-                        dispatch(tasksSlice.actions.addItem(newItemText));
+                        dispatch(usersSlice.actions.addItem(newItemText));
                         setNewItemText("");
                     }
                 }}

@@ -6,11 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Services;
-using Tasks.Api.Services;
+using Users.Api.Services;
 using Users.Database;
 using Users.Database.Repositories;
 
-namespace Tasks.Api
+namespace Users.Api
 {
     public class Startup
     {
@@ -25,7 +25,7 @@ namespace Tasks.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "TodoTasks.Api", Version = "v1"}); });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Users.Api", Version = "v1"}); });
             RegisterServices(services);
             ApplyMigrations(services);
         }
@@ -59,7 +59,7 @@ namespace Tasks.Api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoTasks.Api v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Users.Api v1");
                 c.RoutePrefix = "swagger";
             });
 

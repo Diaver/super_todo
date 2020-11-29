@@ -3,8 +3,8 @@ import {Router, Route, Switch, BrowserRouter} from 'react-router-dom';
 import {MainLayout} from "../features/mainLayout/MainLayout";
 import history from "../services/history";
 import {PageNotFound} from "../features/pageNotFound/PageNotFound";
-import {Loader} from "./Loader";
 import {Tasks} from "../features/tasks/Tasks";
+import {Users} from "../features/users/Users";
 
 export default class HistoryBrowserRouter extends BrowserRouter {
     render() {
@@ -16,11 +16,17 @@ export default class HistoryBrowserRouter extends BrowserRouter {
                             <Tasks/>
                         </MainLayout>
                     </Route>
+
+                    <Route exact path="/tasks">
+                        <MainLayout showSearchBar={true}>
+                            <Tasks/>
+                        </MainLayout>
+                    </Route>
                  
                     <Route
-                        exact path="/login">
+                        exact path="/users">
                         <MainLayout showFooter={true}>
-                            <Loader/>
+                            <Users/>
                         </MainLayout>
                     </Route>
                  

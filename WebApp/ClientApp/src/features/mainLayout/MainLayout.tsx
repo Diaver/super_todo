@@ -15,10 +15,11 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import {Box, Link} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleIcon from '@material-ui/icons/People';
+import {NavLink as RouterLink} from "react-router-dom";
+import {Copyright} from "./Copyright";
 
 const drawerWidth = 240;
 
@@ -83,21 +84,12 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
             padding: theme.spacing(3),
         },
+        active: {
+            backgroundColor: theme.palette.action.selected
+        }
     }),
 );
 
-export function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'© '}
-            <Link color="inherit" href="/">
-                Super ToDo
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 interface IMainLayoutProps {
     showSearchBar?: boolean
@@ -164,13 +156,14 @@ export function MainLayout(props: PropsWithChildren<IMainLayoutProps>) {
                 <Divider/>
                 <List>
 
-                    <ListItem button>
+                    <ListItem button component={RouterLink} to="/users" activeClassName={classes.active}>
                         <ListItemIcon>
                             <PeopleIcon/>
                         </ListItemIcon>
                         <ListItemText primary="Users"/>
                     </ListItem>
-                    <ListItem button>
+
+                    <ListItem button component={RouterLink} to="/tasks" activeClassName={classes.active}>
                         <ListItemIcon>
                             <AssignmentIcon/>
                         </ListItemIcon>

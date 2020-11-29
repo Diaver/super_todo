@@ -5,9 +5,9 @@ using ApiService.Models.Api.Common;
 using ApiService.Models.Api.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Tasks.Api.Services;
+using Users.Api.Services;
 
-namespace Tasks.Api.Controllers
+namespace Users.Api.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]

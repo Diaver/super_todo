@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using ApiService.Models.Api.Common;
 using ApiService.Models.Api.Response;
 
-namespace Tasks.Api.Services
+namespace Users.Api.Services
 {
     public interface IUsersService
     {
