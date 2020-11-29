@@ -77,7 +77,7 @@ export function Users() {
                     const labelId = `checkbox-list-label-${user.userId}`;
 
                     return (
-                        <ListItem key={user.userId} role={undefined} dense button className={classes.itemAdded}>
+                        <ListItem key={user.userId} role={undefined} dense button className={classes.itemAdded}  component={RouterLink} to={`/user/edit/${user.userId}`}>
                             <ListItemIcon>
                                 <AccountCircle/>
                             </ListItemIcon>

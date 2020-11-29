@@ -10,11 +10,27 @@ class UsersApi {
             url: 'api/users/getAll',
         },)
     }
+    
     add(userRequest: IUserRequest): AxiosPromise<IApiResultBase> {
         return axios({
             method: 'put',
             url: 'api/users/add',
             data: userRequest
+        },)
+    }
+
+    update(userResponse: IUserResponse): AxiosPromise<IApiResultBase> {
+        return axios({
+            method: 'put',
+            url: 'api/users/update',
+            data: userResponse
+        },)
+    }
+    
+    getById(userId: string): AxiosPromise<IApiResult<IUserResponse>> {
+        return axios({
+            method: 'get',
+            url: `api/users/getById/${userId}`,
         },)
     }
 }

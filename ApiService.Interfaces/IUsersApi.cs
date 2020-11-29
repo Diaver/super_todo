@@ -17,5 +17,8 @@ namespace ApiService.Interfaces
 
         [Put("/add")]
         Task<ApiResult> Add(UserRequest userResponse);
+        
+        [Put("/update")]
+        Task<ApiResult> Update(UserResponse userResponse);
     }
 }

@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppThunk, RootState} from '../../app/rootStore';
-import {ITaskResponse} from "../../apiModels/response/ITaskResponse";
 import {IUserResponse} from "../../apiModels/response/IUserResponse";
 import UsersApi from "../../api/UsersApi";
 import NotificationService from "../../services/NotificationService";
@@ -48,7 +47,7 @@ export const loadUsersAsync = (): AppThunk => async (dispatch, getState) => {
     } catch (e) {
         NotificationService.onPromiseRejected(e);
     }
-    dispatch(usersSlice.actions.setLoading(true));
+    dispatch(usersSlice.actions.setLoading(false));
 }
 
 

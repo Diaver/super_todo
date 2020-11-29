@@ -9,9 +9,11 @@ namespace Users.Api.Services
     public interface IUsersService
     {
         Task<ApiResult<IEnumerable<UserResponse>>> GetAll();
-        
+
         Task<ApiResult<UserResponse>> GetById(string userId);
-        
-        Task<ApiResult> Add(UserRequest userResponse);
+
+        Task<ApiResult> Add(UserRequest userRequest);
+
+        Task<ApiResult> Update(UserResponse userResponse);
     }
 }

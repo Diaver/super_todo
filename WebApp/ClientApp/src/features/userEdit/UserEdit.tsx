@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import {Backdrop, Container, Fab, Grid, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
@@ -8,8 +8,9 @@ import {AccountCircle} from "@material-ui/icons";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import TodayIcon from '@material-ui/icons/Today';
-import {addAsync, loadingSelector, usersAddSlice, userSelector} from "./usersAddSlice";
+import {saveAsync, loadingSelector, loadUserAsync, userEditSlice, userSelector} from "./userEditSlice";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {useParams} from "react-router-dom";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,13 +39,23 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export function UserAdd() {
+export interface IUserIdRouteParams {
+    userId: string;
+}
+
+
+export function UserEdit() {
     
     const classes = useStyles();
     const dispatch = useDispatch();
     const user = useSelector(userSelector);
     const loading = useSelector(loadingSelector);
+    const {userId} = useParams<IUserIdRouteParams>();
 
+    useEffect(() => {
+        dispatch(loadUserAsync(userId));
+    }, []);
+    
     return (
         <Container component="main" maxWidth="md">
             
@@ -55,7 +66,7 @@ export function UserAdd() {
             <ValidatorForm
                 className={classes.form}
                 onSubmit={() => {
-                    dispatch(addAsync());
+                    dispatch(saveAsync());
                 }}
                 onError={errors => console.log(errors)}
             >
@@ -68,7 +79,7 @@ export function UserAdd() {
                     
                     <Grid item>
                         <Typography variant={"h4"}>
-                            User Add
+                            User Edit
                         </Typography>
                     </Grid>
                     
@@ -103,7 +114,7 @@ export function UserAdd() {
                         label="Name"
                         placeholder="Please enter user's name"
                         value={user.name}
-                        onChange={(e: any) => dispatch(usersAddSlice.actions.updateFieldValue({
+                        onChange={(e: any) => dispatch(userEditSlice.actions.updateFieldValue({
                             field: "name",
                             value: e.target.value
                         }))}
@@ -125,7 +136,7 @@ export function UserAdd() {
                         label="Email"
                         placeholder="Please enter user's email"
                         value={user.email}
-                        onChange={(e: any) => dispatch(usersAddSlice.actions.updateFieldValue({
+                        onChange={(e: any) => dispatch(userEditSlice.actions.updateFieldValue({
                             field: "email",
                             value: e.target.value
                         }))}
@@ -144,7 +155,7 @@ export function UserAdd() {
                         label="Date of Birth"
                         placeholder="Please enter user's date of birth"
                         value={user.dateOfBirth}
-                        onChange={(e: any) => dispatch(usersAddSlice.actions.updateFieldValue({
+                        onChange={(e: any) => dispatch(userEditSlice.actions.updateFieldValue({
                             field: "dateOfBirth",
                             value: e.target.value
                         }))}

@@ -6,6 +6,7 @@ import {PageNotFound} from "../features/pageNotFound/PageNotFound";
 import {Tasks} from "../features/tasks/Tasks";
 import {Users} from "../features/users/Users";
 import {UserAdd} from "../features/userAdd/UserAdd";
+import {UserEdit} from "../features/userEdit/UserEdit";
 
 export default class HistoryBrowserRouter extends BrowserRouter {
     render() {
@@ -36,6 +37,11 @@ export default class HistoryBrowserRouter extends BrowserRouter {
                         </MainLayout>
                     </Route>
 
+                    <Route exact path="/user/edit/:userId">
+                        <MainLayout showSearchBar={true}>
+                            <UserEdit/>
+                        </MainLayout>
+                    </Route>
                     <Route>
                         <MainLayout showFooter={true}>
                             <PageNotFound/>

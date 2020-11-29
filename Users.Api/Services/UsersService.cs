@@ -51,15 +51,32 @@ namespace Users.Api.Services
             });
         }
 
-        public async Task<ApiResult> Add(UserRequest userResponse)
+        public async Task<ApiResult> Add(UserRequest userRequest)
         {
             await _usersRepository.CreateAsync(new User
             {
-                Name = userResponse.Name,
-                Email = userResponse.Email,
-                DateOfBirth = userResponse.DateOfBirth,
+                Name = userRequest.Name,
+                Email = userRequest.Email,
+                DateOfBirth = userRequest.DateOfBirth,
             });
 
+            return ApiResult.Ok();
+        }
+
+        public async Task<ApiResult> Update(UserResponse userResponse)
+        {
+            User user = await _usersRepository.FindAsync(userResponse.UserId);
+
+            if (user == null)
+            {
+                return ApiResult.Bad(ErrorMessagesEnum.UserNotFound, "User not found");
+            }
+
+            user.Email = userResponse.Email;
+            user.DateOfBirth = userResponse.DateOfBirth;
+            user.Name = userResponse.Name;
+            await _usersRepository.UpdateAsync(user);
+            
             return ApiResult.Ok();
         }
     }

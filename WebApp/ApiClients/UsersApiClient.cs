@@ -37,5 +37,10 @@ namespace WebApp.ApiClients
         {
             return _restClient.Add(userResponse);
         }
+
+        public Task<ApiResult> Update(UserResponse userResponse)
+        {
+            return _restClient.Update(userResponse);
+        }
     }
 }

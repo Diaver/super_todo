@@ -40,5 +40,11 @@ namespace Users.Api.Controllers
         {
             return await _usersService.Add(userResponse);
         }
+
+        [HttpPut("update")]
+        public async Task<ApiResult> Update(UserResponse userResponse)
+        {
+            return await _usersService.Update(userResponse);
+        }
     }
 }

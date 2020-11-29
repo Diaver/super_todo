@@ -41,5 +41,11 @@ namespace WebApp.Controllers
         {
             return await _usersApi.Add(userResponse);
         }
+
+        [HttpPut("update")]
+        public async Task<ApiResult> Update(UserResponse userResponse)
+        {
+            return await _usersApi.Update(userResponse);
+        }
     }
 }
