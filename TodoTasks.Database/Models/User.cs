@@ -11,7 +11,7 @@ namespace TodoTasks.Database.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid UserId { get; set; }
         
-        public Guid Name { get; set; }
+        public string Name { get; set; }
         
         public List<TodoTask> TodoTasks { get; set; }
         
