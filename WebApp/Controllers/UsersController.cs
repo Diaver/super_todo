@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models.Api.Common;
+using ApiService.Models.Api.Request;
 using ApiService.Models.Api.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,13 +11,13 @@ namespace WebApp.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    public class UsersApiController : ControllerBase, IUsersApi
+    public class UsersController : ControllerBase, IUsersApi
     {
-        private readonly ILogger<UsersApiController> _logger;
+        private readonly ILogger<UsersController> _logger;
         private readonly IUsersApi _usersApi;
 
-        public UsersApiController(
-            ILogger<UsersApiController> logger,
+        public UsersController(
+            ILogger<UsersController> logger,
             IUsersApi usersApi)
         {
             _logger = logger;
@@ -36,7 +37,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPut("add")]
-        public async Task<ApiResult> Add([FromBody] UserResponse userResponse)
+        public async Task<ApiResult> Add([FromBody] UserRequest userResponse)
         {
             return await _usersApi.Add(userResponse);
         }

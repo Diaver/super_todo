@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiService.Models.Api.Common;
+using ApiService.Models.Api.Request;
 using ApiService.Models.Api.Response;
 
 namespace Users.Api.Services
@@ -11,6 +12,6 @@ namespace Users.Api.Services
         
         Task<ApiResult<UserResponse>> GetById(string userId);
         
-        Task<ApiResult> Add(UserResponse userResponse);
+        Task<ApiResult> Add(UserRequest userResponse);
     }
 }

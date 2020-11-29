@@ -16,7 +16,7 @@ namespace WebApp.ApiClients
 
         public TodoTasksApiClient(IConfiguration config, HttpClient httpClient)
         {
-            string apiHostAndPort = config.GetSection("APIServiceLocations").GetValue<string>("TasksAPI");
+            string apiHostAndPort = config.GetSection("APIServiceLocations").GetValue<string>("TasksApi");
             httpClient.BaseAddress = new Uri($"http://{apiHostAndPort}/api/todoTasks");
 
             _restClient = RestService.For<ITodoTasksApi>(httpClient);

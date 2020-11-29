@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models.Api.Common;
+using ApiService.Models.Api.Request;
 using ApiService.Models.Api.Response;
 using Microsoft.Extensions.Configuration;
 using Refit;
@@ -32,7 +33,7 @@ namespace WebApp.ApiClients
             return _restClient.GetById(userId);
         }
 
-        public Task<ApiResult> Add(UserResponse userResponse)
+        public Task<ApiResult> Add(UserRequest userResponse)
         {
             return _restClient.Add(userResponse);
         }

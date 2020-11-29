@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiService.Models.Api.Common;
+using ApiService.Models.Api.Request;
 using ApiService.Models.Api.Response;
 using Users.Database.Models;
 using Users.Database.Repositories;
@@ -50,7 +51,7 @@ namespace Users.Api.Services
             });
         }
 
-        public async Task<ApiResult> Add(UserResponse userResponse)
+        public async Task<ApiResult> Add(UserRequest userResponse)
         {
             await _usersRepository.CreateAsync(new User
             {

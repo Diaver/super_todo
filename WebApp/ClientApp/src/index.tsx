@@ -14,7 +14,6 @@ function ErrorFallback(props: FallbackProps) {
         <div role="alert">
             <h2>Oops.. something went wrong and page crash :(</h2>
             <pre>Error: {props.error && props.error.message}</pre>
-            <h6>Email: support@you-maps.com</h6>
             <h6><a href="/">Go to Home page</a></h6>
         </div>
     )

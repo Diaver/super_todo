@@ -1,41 +1,60 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {RootState} from '../../app/rootStore';
+import {AppThunk, RootState} from '../../app/rootStore';
 import {ITaskResponse} from "../../apiModels/response/ITaskResponse";
+import {IUserResponse} from "../../apiModels/response/IUserResponse";
+import UsersApi from "../../api/UsersApi";
+import NotificationService from "../../services/NotificationService";
 
 interface UsersState {
-    items: ITaskResponse[];
+    users: IUserResponse[];
     taskIndex: number;
+    loading: boolean
 }
 
 const initialState: UsersState = {
-    items: [],
-    taskIndex: 0
+    users: [],
+    taskIndex: 0,
+    loading: false
 };
 
 export const usersSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
-        addItem: (state, action: PayloadAction<string>) => {
-            const newTask: ITaskResponse = {
-                text: action.payload,
-                taskId: state.taskIndex.toString(),
-                userId: "userId"
+        setLoading: (state, action: PayloadAction<boolean>) => {
+            state.loading = action.payload
+        },  
+        
+        usersLoaded: (state, action: PayloadAction<IUserResponse[]>) => {
+            state.users = action.payload
+        },
 
-            };
-            state.items = [...state.items, newTask];
-            state.taskIndex = state.taskIndex + 1;
-        },
-        deleteItem: (state, action: PayloadAction<string>) => {
-            state.items = state.items.filter(item => item.taskId !== action.payload);
-        },
+     
     },
 });
+
+export const loadUsersAsync = (): AppThunk => async (dispatch, getState) => {
+
+    dispatch(usersSlice.actions.setLoading(true));
+
+    try {
+        let serverRequest = await UsersApi.getAll();
+
+        if (serverRequest.data.isSuccess) {
+            dispatch(usersSlice.actions.usersLoaded(serverRequest.data.data));
+        } else {
+            NotificationService.onRequestFailed(serverRequest.data)
+        }
+    } catch (e) {
+        NotificationService.onPromiseRejected(e);
+    }
+    dispatch(usersSlice.actions.setLoading(true));
+}
 
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.users.value)`
-export const itemsSelector = (state: RootState) => state.users.items;
+export const usersSelector = (state: RootState) => state.users.users;
 
 export default usersSlice.reducer;

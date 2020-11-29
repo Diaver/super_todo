@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models.Api.Common;
+using ApiService.Models.Api.Request;
 using ApiService.Models.Api.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -35,7 +36,7 @@ namespace Users.Api.Controllers
         }
 
         [HttpPut("add")]
-        public async Task<ApiResult> Add(UserResponse userResponse)
+        public async Task<ApiResult> Add(UserRequest userResponse)
         {
             return await _usersService.Add(userResponse);
         }

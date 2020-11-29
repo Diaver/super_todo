@@ -5,6 +5,7 @@ import history from "../services/history";
 import {PageNotFound} from "../features/pageNotFound/PageNotFound";
 import {Tasks} from "../features/tasks/Tasks";
 import {Users} from "../features/users/Users";
+import {UserAdd} from "../features/userAdd/UserAdd";
 
 export default class HistoryBrowserRouter extends BrowserRouter {
     render() {
@@ -22,14 +23,19 @@ export default class HistoryBrowserRouter extends BrowserRouter {
                             <Tasks/>
                         </MainLayout>
                     </Route>
-                 
-                    <Route
-                        exact path="/users">
+
+                    <Route exact path="/users">
                         <MainLayout showFooter={true}>
                             <Users/>
                         </MainLayout>
                     </Route>
-                 
+
+                    <Route exact path="/users/add">
+                        <MainLayout showFooter={true}>
+                            <UserAdd/>
+                        </MainLayout>
+                    </Route>
+
                     <Route>
                         <MainLayout showFooter={true}>
                             <PageNotFound/>
