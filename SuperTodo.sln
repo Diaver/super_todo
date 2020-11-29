@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Api", "Users.Api\User
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users.Database", "Users.Database\Users.Database.csproj", "{CCB09FD4-17F6-4DBB-92BD-F12BBB34B287}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messaging", "Messaging\Messaging.csproj", "{FB94E2D9-E01E-487E-A96C-A0082C301ECC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoTasks.EventHandler", "TodoTasks.EventHandler\TodoTasks.EventHandler.csproj", "{6A2353EA-0E23-46A9-9ED1-CDDEFA7ED247}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +62,13 @@ Global
 		{CCB09FD4-17F6-4DBB-92BD-F12BBB34B287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCB09FD4-17F6-4DBB-92BD-F12BBB34B287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCB09FD4-17F6-4DBB-92BD-F12BBB34B287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB94E2D9-E01E-487E-A96C-A0082C301ECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB94E2D9-E01E-487E-A96C-A0082C301ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB94E2D9-E01E-487E-A96C-A0082C301ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB94E2D9-E01E-487E-A96C-A0082C301ECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A2353EA-0E23-46A9-9ED1-CDDEFA7ED247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A2353EA-0E23-46A9-9ED1-CDDEFA7ED247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A2353EA-0E23-46A9-9ED1-CDDEFA7ED247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A2353EA-0E23-46A9-9ED1-CDDEFA7ED247}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

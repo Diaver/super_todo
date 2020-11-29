@@ -8,6 +8,7 @@ COPY ["Users.Api/Users.Api.csproj", "Users.Api/"]
 COPY ["ApiService.Interfaces/ApiService.Interfaces.csproj", "ApiService.Interfaces/"]
 COPY ["ApiService.Models/ApiService.Models.csproj", "ApiService.Models/"]
 COPY ["Services/Services.csproj", "Services/"]
+COPY ["Messaging/Messaging.csproj", "Messaging/"]
 RUN dotnet restore "Users.Api/Users.Api.csproj"
 
 

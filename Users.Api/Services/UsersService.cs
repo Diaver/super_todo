@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using ApiService.Models.Api.Common;
 using ApiService.Models.Api.Request;
 using ApiService.Models.Api.Response;
+using Messaging;
+using Messaging.Interfaces;
 using Users.Database.Models;
 using Users.Database.Repositories;
 
@@ -12,10 +14,12 @@ namespace Users.Api.Services
     public class UsersService : IUsersService
     {
         private readonly IUsersRepository _usersRepository;
+        private readonly IMessagePublisher _messagePublisher;
 
-        public UsersService(IUsersRepository usersRepository)
+        public UsersService(IUsersRepository usersRepository, IMessagePublisher messagePublisher)
         {
             _usersRepository = usersRepository;
+            _messagePublisher = messagePublisher;
         }
 
         public async Task<ApiResult<IEnumerable<UserResponse>>> GetAll()
@@ -53,13 +57,15 @@ namespace Users.Api.Services
 
         public async Task<ApiResult> Add(UserRequest userRequest)
         {
-            await _usersRepository.CreateAsync(new User
+            User user = await _usersRepository.CreateAsync(new User
             {
                 Name = userRequest.Name,
                 Email = userRequest.Email,
                 DateOfBirth = userRequest.DateOfBirth,
             });
 
+            _ = _messagePublisher.PublishMessageAsync(MessageType.UserAdded, user, "");
+            
             return ApiResult.Ok();
         }
 
@@ -76,7 +82,8 @@ namespace Users.Api.Services
             user.DateOfBirth = userResponse.DateOfBirth;
             user.Name = userResponse.Name;
             await _usersRepository.UpdateAsync(user);
-            
+
+            _ = _messagePublisher.PublishMessageAsync(MessageType.UserUpdated, user, "");
             return ApiResult.Ok();
         }
     }
