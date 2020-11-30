@@ -43,6 +43,13 @@ class TodoTasksApi {
         },)
     }
 
+    complete(todoTaskIdRequest: ITodoTaskIdRequest): AxiosPromise<IApiResultBase> {
+        return axios({
+            method: 'put',
+            url: `api/todoTasks/complete/`,
+            data: todoTaskIdRequest
+        },)
+    }
 }
 
 const api = new TodoTasksApi();
