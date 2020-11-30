@@ -1,6 +1,6 @@
 using System;
 
-namespace ApiService.Models.Api.Response
+namespace ApiService.Models.Api.UsersApi.Response
 {
     public class UserResponse
     {

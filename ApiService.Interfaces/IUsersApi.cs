@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiService.Models.Api.Common;
-using ApiService.Models.Api.Request;
-using ApiService.Models.Api.Response;
+using ApiService.Models.Api.UsersApi.Request;
+using ApiService.Models.Api.UsersApi.Response;
 using Refit;
 
 namespace ApiService.Interfaces
@@ -16,9 +16,9 @@ namespace ApiService.Interfaces
         Task<ApiResult<UserResponse>> GetById(string userId);
 
         [Put("/add")]
-        Task<ApiResult> Add(UserRequest userResponse);
+        Task<ApiResult> Add(UserCreateRequest userCreateRequest);
         
         [Put("/update")]
-        Task<ApiResult> Update(UserResponse userResponse);
+        Task<ApiResult> Update(UserUpdateRequest userUpdateRequest);
     }
 }

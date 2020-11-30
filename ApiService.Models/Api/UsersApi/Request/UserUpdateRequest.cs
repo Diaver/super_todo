@@ -1,7 +1,11 @@
-namespace ApiService.Models.Api.Request
+using System;
+
+namespace ApiService.Models.Api.UsersApi.Request
 {
-    public class UserRequest
+    public class UserUpdateRequest
     {
+        public Guid UserId { get; set; }
+        
         public string Name { get; set; }
         
         public string Email { get; set; }

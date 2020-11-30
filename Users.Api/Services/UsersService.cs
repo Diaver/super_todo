@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiService.Models.Api.Common;
-using ApiService.Models.Api.Request;
-using ApiService.Models.Api.Response;
+using ApiService.Models.Api.UsersApi.Request;
+using ApiService.Models.Api.UsersApi.Response;
 using Messaging;
 using Messaging.Interfaces;
 using Users.Database.Models;
@@ -55,13 +55,13 @@ namespace Users.Api.Services
             });
         }
 
-        public async Task<ApiResult> Add(UserRequest userRequest)
+        public async Task<ApiResult> Add(UserCreateRequest userCreateRequest)
         {
             User user = await _usersRepository.CreateAsync(new User
             {
-                Name = userRequest.Name,
-                Email = userRequest.Email,
-                DateOfBirth = userRequest.DateOfBirth,
+                Name = userCreateRequest.Name,
+                Email = userCreateRequest.Email,
+                DateOfBirth = userCreateRequest.DateOfBirth,
             });
 
             _ = _messagePublisher.PublishMessageAsync(MessageType.UserAdded, user, "");
@@ -69,18 +69,18 @@ namespace Users.Api.Services
             return ApiResult.Ok();
         }
 
-        public async Task<ApiResult> Update(UserResponse userResponse)
+        public async Task<ApiResult> Update(UserUpdateRequest userUpdateRequest)
         {
-            User user = await _usersRepository.FindAsync(userResponse.UserId);
+            User user = await _usersRepository.FindAsync(userUpdateRequest.UserId);
 
             if (user == null)
             {
                 return ApiResult.Bad(ErrorMessagesEnum.UserNotFound, "User not found");
             }
 
-            user.Email = userResponse.Email;
-            user.DateOfBirth = userResponse.DateOfBirth;
-            user.Name = userResponse.Name;
+            user.Email = userUpdateRequest.Email;
+            user.DateOfBirth = userUpdateRequest.DateOfBirth;
+            user.Name = userUpdateRequest.Name;
             await _usersRepository.UpdateAsync(user);
 
             _ = _messagePublisher.PublishMessageAsync(MessageType.UserUpdated, user, "");

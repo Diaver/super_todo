@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models.Api.Common;
-using ApiService.Models.Api.Request;
-using ApiService.Models.Api.Response;
+using ApiService.Models.Api.UsersApi.Request;
+using ApiService.Models.Api.UsersApi.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Users.Api.Services;
@@ -24,27 +24,27 @@ namespace Users.Api.Controllers
         }
 
         [HttpGet("getAll")]
-        public async Task<ApiResult<IEnumerable<UserResponse>>> GetAll()
+        public Task<ApiResult<IEnumerable<UserResponse>>> GetAll()
         {
-            return await _usersService.GetAll();
+            return _usersService.GetAll();
         }
 
         [HttpGet("getById/{userId}")]
-        public async Task<ApiResult<UserResponse>> GetById(string userId)
+        public Task<ApiResult<UserResponse>> GetById(string userId)
         {
-            return await _usersService.GetById(userId);
+            return _usersService.GetById(userId);
         }
 
         [HttpPut("add")]
-        public async Task<ApiResult> Add(UserRequest userResponse)
+        public Task<ApiResult> Add(UserCreateRequest userCreateRequest)
         {
-            return await _usersService.Add(userResponse);
+            return _usersService.Add(userCreateRequest);
         }
 
         [HttpPut("update")]
-        public async Task<ApiResult> Update(UserResponse userResponse)
+        public Task<ApiResult> Update(UserUpdateRequest userUpdateRequest)
         {
-            return await _usersService.Update(userResponse);
+            return _usersService.Update(userUpdateRequest);
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using ApiService.Models.Api.Common;
 
-namespace ApiService.Models.Api.Response
+namespace ApiService.Models.Api.TodoTasksApi.Response
 {
     public class TodoTaskResponse
     {

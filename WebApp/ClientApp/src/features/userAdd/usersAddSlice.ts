@@ -1,12 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppThunk, RootState} from '../../app/rootStore';
 import {IFieldUpdateDto} from "../../models/IFieldUpdateDto";
-import {IUserRequest} from "../../apiModels/request/IUserRequest";
 import UsersApi from "../../api/UsersApi";
 import NotificationService from "../../services/NotificationService";
 import NavigationService from "../../services/NavigationService";
+import {IUserCreateRequest} from "../../apiModels/usersApi/Request/IUserCreateRequest";
 
-const getUserRequestInitialState: () => IUserRequest = () => {
+const getUserRequestInitialState: () => IUserCreateRequest = () => {
     return {
         name: "",
         email: "",
@@ -15,7 +15,7 @@ const getUserRequestInitialState: () => IUserRequest = () => {
 }
 
 interface UsersState {
-    user: IUserRequest,
+    user: IUserCreateRequest,
     loading: boolean
 }
 

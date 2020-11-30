@@ -4,7 +4,7 @@ import {IFieldUpdateDto} from "../../models/IFieldUpdateDto";
 import UsersApi from "../../api/UsersApi";
 import NotificationService from "../../services/NotificationService";
 import NavigationService from "../../services/NavigationService";
-import {IUserResponse} from "../../apiModels/response/IUserResponse";
+import {IUserResponse} from "../../apiModels/usersApi/Response/IUserResponse";
 
 const getUserRequestInitialState: () => IUserResponse = () => {
     return {

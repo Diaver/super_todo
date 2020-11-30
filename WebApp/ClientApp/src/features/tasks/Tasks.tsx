@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,9 +10,10 @@ import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 import {Container, TextField, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {itemsSelector, tasksSlice} from "./tasksSlice";
+import {itemsSelector, loadUsersAsync, tasksSlice, usersSelector} from "./tasksSlice";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -34,34 +35,33 @@ const useStyles = makeStyles((theme: Theme) =>
 export function Tasks() {
     const classes = useStyles();
     const items = useSelector(itemsSelector);
+    const users = useSelector(usersSelector);
     const dispatch = useDispatch();
-    const [checked, setChecked] = React.useState([]);
     const [newItemText, setNewItemText] = React.useState<string>("");
 
-    const handleToggle = (value: string) => () => {
-           // const currentIndex = checked.indexOf(value);
-            const newChecked = [...checked];
-    
-            /*if (currentIndex === -1) {
-                newChecked.push(value);
-            } else {
-                newChecked.splice(currentIndex, 1);
-            }*/
-    
-            setChecked(newChecked);
-    };
+    useEffect(() => {
+        dispatch(loadUsersAsync());
+    }, []);
+
 
     return (
         <Container component="main" maxWidth="md">
             <Typography variant={"h4"}>
                 Tasks
             </Typography>
+            <Autocomplete
+                id="combo-box-demo"
+                options={users}
+                getOptionLabel={(option) => option.name}
+                style={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} label="Select user" variant="outlined" />}
+            />
             <List>
                 {items.map((item) => {
-                    const labelId = `checkbox-list-label-${item.taskId}`;
+                    const labelId = `checkbox-list-label-${item.todoTaskId}`;
 
                     return (
-                        <ListItem key={item.taskId} role={undefined} dense button onClick={handleToggle(item.taskId)} className={classes.itemAdded}>
+                        <ListItem key={item.todoTaskId} role={undefined} dense button className={classes.itemAdded}>
                             <ListItemIcon>
                                 <Checkbox
                                     edge="start"
@@ -72,7 +72,7 @@ export function Tasks() {
                             </ListItemIcon> 
                             <ListItemText id={labelId}  primary={item.text}/>
                             <ListItemSecondaryAction >
-                                <IconButton edge="end" aria-label="comments" onClick={()=> dispatch(tasksSlice.actions.deleteItem(item.taskId))}>
+                                <IconButton edge="end" aria-label="comments" onClick={()=> {}}>
                                     <DeleteIcon/>
                                 </IconButton>
                             </ListItemSecondaryAction>
@@ -88,7 +88,7 @@ export function Tasks() {
                 onChange={event => setNewItemText(event.target.value)}
                 onKeyPress={ev => {
                     if (ev.key === 'Enter') {
-                        dispatch(tasksSlice.actions.addItem(newItemText));
+                       /* dispatch(tasksSlice.actions.addItem(newItemText));*/
                         setNewItemText("");
                     }
                 }}

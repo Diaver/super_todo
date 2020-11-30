@@ -1,19 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ApiService.Models.Api.Common;
-using ApiService.Models.Api.Request;
-using ApiService.Models.Api.Response;
+﻿using ApiService.Interfaces;
 
 namespace Users.Api.Services
 {
-    public interface IUsersService
+    public interface IUsersService: IUsersApi
     {
-        Task<ApiResult<IEnumerable<UserResponse>>> GetAll();
-
-        Task<ApiResult<UserResponse>> GetById(string userId);
-
-        Task<ApiResult> Add(UserRequest userRequest);
-
-        Task<ApiResult> Update(UserResponse userResponse);
     }
 }

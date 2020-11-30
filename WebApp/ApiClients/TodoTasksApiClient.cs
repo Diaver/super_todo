@@ -4,7 +4,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models.Api.Common;
-using ApiService.Models.Api.Response;
+using ApiService.Models.Api.TodoTasksApi.Request;
+using ApiService.Models.Api.TodoTasksApi.Response;
 using Microsoft.Extensions.Configuration;
 using Refit;
 
@@ -22,19 +23,34 @@ namespace WebApp.ApiClients
             _restClient = RestService.For<ITodoTasksApi>(httpClient);
         }
 
-        public Task<ApiResult<IEnumerable<TodoTaskResponse>>> GetTodoTasks()
+        public Task<ApiResult<IEnumerable<TodoTaskResponse>>> GetAll()
         {
-            return _restClient.GetTodoTasks();
+            return _restClient.GetAll();
         }
 
-        public Task<TodoTaskResponse> GetTodoTaskById(string todoTaskId)
+        public Task<ApiResult<IEnumerable<TodoTaskUserResponse>>> GetAllUsers()
         {
-            return _restClient.GetTodoTaskById(todoTaskId);
+            return _restClient.GetAllUsers();
         }
 
-        public Task AddTodoTasks(TodoTaskResponse todoTaskResponse)
+        public Task<ApiResult<IEnumerable<TodoTaskResponse>>> GetByUserId(string userId)
         {
-            return _restClient.AddTodoTasks(todoTaskResponse);
+            return _restClient.GetByUserId(userId);
+        }
+
+        public Task<ApiResult> Add(TodoTaskCreateRequest todoTaskCreateRequest)
+        {
+            return _restClient.Add(todoTaskCreateRequest);
+        }
+
+        public Task<ApiResult> Delete(TodoTaskIdRequest todoTaskIdRequest)
+        {
+            return _restClient.Delete(todoTaskIdRequest);
+        }
+
+        public Task<ApiResult> Complete(TodoTaskIdRequest todoTaskIdRequest)
+        {
+            return _restClient.Complete(todoTaskIdRequest);
         }
     }
 }

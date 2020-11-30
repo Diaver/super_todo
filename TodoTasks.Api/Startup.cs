@@ -37,6 +37,7 @@ namespace Tasks.Api
             services.AddScoped<ITodoTasksService, TodoTasksService>();
             
             services.AddTransient<ITodoTaskRepository, TodoTaskRepository>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
         }
 
         private void ApplyMigrations(IServiceCollection services)

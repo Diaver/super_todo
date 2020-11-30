@@ -10,8 +10,6 @@ import {loadUsersAsync, usersSelector} from "./usersSlice";
 import AddIcon from '@material-ui/icons/Add';
 import {NavLink as RouterLink} from "react-router-dom";
 import {AccountCircle} from "@material-ui/icons";
-import CancelIcon from "@material-ui/icons/Cancel";
-import SaveIcon from "@material-ui/icons/Save";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

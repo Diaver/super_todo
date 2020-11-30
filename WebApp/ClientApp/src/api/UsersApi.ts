@@ -1,7 +1,8 @@
 import axios, {AxiosPromise} from "axios";
 import {IApiResult, IApiResultBase} from "../apiModels/common/IApiResult";
-import {IUserResponse} from "../apiModels/response/IUserResponse";
-import {IUserRequest} from "../apiModels/request/IUserRequest";
+import {IUserCreateRequest} from "../apiModels/usersApi/Request/IUserCreateRequest";
+import {IUserUpdateRequest} from "../apiModels/usersApi/Request/IUserUpdateRequest";
+import {IUserResponse} from "../apiModels/usersApi/Response/IUserResponse";
 
 class UsersApi {
     getAll(): AxiosPromise<IApiResult<IUserResponse[]>> {
@@ -11,7 +12,7 @@ class UsersApi {
         },)
     }
     
-    add(userRequest: IUserRequest): AxiosPromise<IApiResultBase> {
+    add(userRequest: IUserCreateRequest): AxiosPromise<IApiResultBase> {
         return axios({
             method: 'put',
             url: 'api/users/add',
@@ -19,7 +20,7 @@ class UsersApi {
         },)
     }
 
-    update(userResponse: IUserResponse): AxiosPromise<IApiResultBase> {
+    update(userResponse: IUserUpdateRequest): AxiosPromise<IApiResultBase> {
         return axios({
             method: 'put',
             url: 'api/users/update',

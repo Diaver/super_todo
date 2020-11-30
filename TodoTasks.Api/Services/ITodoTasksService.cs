@@ -1,12 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ApiService.Models.Api.Common;
-using ApiService.Models.Api.Response;
+﻿using ApiService.Interfaces;
 
 namespace Tasks.Api.Services
 {
-    public interface ITodoTasksService
+    public interface ITodoTasksService: ITodoTasksApi
     {
-        Task<ApiResult<IEnumerable<TodoTaskResponse>>> GetAllAsync();
     }
 }

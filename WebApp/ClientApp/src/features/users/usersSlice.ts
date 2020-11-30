@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppThunk, RootState} from '../../app/rootStore';
-import {IUserResponse} from "../../apiModels/response/IUserResponse";
 import UsersApi from "../../api/UsersApi";
 import NotificationService from "../../services/NotificationService";
+import {IUserResponse} from "../../apiModels/usersApi/Response/IUserResponse";
 
 interface UsersState {
     users: IUserResponse[];

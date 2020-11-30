@@ -1,4 +1,4 @@
-﻿﻿import {ErrorMessagesEnum} from "./ErrorMessagesEnum";
+﻿import {ErrorMessagesEnum} from "./ErrorMessagesEnum";
 
 export interface IApiResultBase {
     isSuccess: boolean;

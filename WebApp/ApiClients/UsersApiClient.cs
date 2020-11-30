@@ -4,8 +4,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models.Api.Common;
-using ApiService.Models.Api.Request;
-using ApiService.Models.Api.Response;
+using ApiService.Models.Api.UsersApi.Request;
+using ApiService.Models.Api.UsersApi.Response;
 using Microsoft.Extensions.Configuration;
 using Refit;
 
@@ -33,12 +33,12 @@ namespace WebApp.ApiClients
             return _restClient.GetById(userId);
         }
 
-        public Task<ApiResult> Add(UserRequest userResponse)
+        public Task<ApiResult> Add(UserCreateRequest userResponse)
         {
             return _restClient.Add(userResponse);
         }
 
-        public Task<ApiResult> Update(UserResponse userResponse)
+        public Task<ApiResult> Update(UserUpdateRequest userResponse)
         {
             return _restClient.Update(userResponse);
         }
