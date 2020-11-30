@@ -7,6 +7,8 @@ using Serilog;
 using System.IO;
 using System.Threading.Tasks;
 using Messaging.Configuration;
+using Services;
+using TodoTasks.Database;
 using TodoTasks.Database.Repositories;
 
 
@@ -38,6 +40,9 @@ namespace TodoTasks.EventHandler
                     services.UseRabbitMqMessageHandler(hostContext.Configuration);
 
                     services.AddTransient<IUsersRepository, UsersRepository>();
+                    services.AddTransient<IAppConfigurationProvider, AppConfigurationProvider>();
+                    services.AddTransient<ITodoTasksDbContextFactory, TodoTasksDbContextFactory>();
+                    services.AddTransient<ITodoTaskRepository, TodoTaskRepository>();
                     
                     services.AddHostedService<EventHandler>();
                 })

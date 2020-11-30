@@ -5,9 +5,13 @@ WORKDIR /app
 
 # Copy necessary files and restore as distinct layer
 COPY ["TodoTasks.EventHandler/TodoTasks.EventHandler.csproj", "TodoTasks.EventHandler/"]
+
+COPY ["ApiService.Models/ApiService.Models.csproj", "ApiService.Models/"]
 COPY ["Messaging/Messaging.csproj", "Messaging/"]
+COPY ["Services/Services.csproj", "Services/"]
 COPY ["TodoTasks.Database/TodoTasks.Database.csproj", "TodoTasks.Database/"]
-RUN dotnet restore "TodoTasks.Api/TodoTasks.Api.csproj"
+
+RUN dotnet restore "TodoTasks.EventHandler/TodoTasks.EventHandler.csproj"
 
 
 # Copy everything else and build

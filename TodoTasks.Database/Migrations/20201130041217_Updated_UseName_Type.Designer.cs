@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodoTasks.Database;
 
 namespace TodoTasks.Database.Migrations
 {
     [DbContext(typeof(TodoTasksDbContext))]
-    partial class TodoTasksDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201130041217_Updated_UseName_Type")]
+    partial class Updated_UseName_Type
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
