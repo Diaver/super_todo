@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 import {Container, Divider, TextField, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {addAsync, loadTasksByUserIdAsync, loadUsersAsync, selectedUserSelector, tasksSelector, tasksSlice, textSelector, usersSelector} from "./tasksSlice";
+import {addAsync, deleteAsync, loadTasksByUserIdAsync, loadUsersAsync, selectedUserSelector, tasksSelector, tasksSlice, textSelector, usersSelector} from "./tasksSlice";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -75,17 +75,17 @@ export function Tasks() {
             <Typography variant={"h4"}>
                 <AssignmentIcon/> Tasks
             </Typography>
-            
+
             <Autocomplete
                 id="combo-box-demo"
                 options={users}
                 value={selectedUser}
-                getOptionSelected={(option: ITodoTaskUserResponse, value: ITodoTaskUserResponse) =>  value.userId === option.userId}
+                getOptionSelected={(option: ITodoTaskUserResponse, value: ITodoTaskUserResponse) => (selectedUser?.userId !== option.userId)}
                 onChange={onChange}
                 fullWidth
                 getOptionLabel={(option) => option.name}
-                style={{ marginTop: 32}}
-                renderInput={(params) => <TextField {...params} label="Select user" variant="outlined" fullWidth/>}
+                style={{marginTop: 32}}
+                renderInput={(params) => <TextField {...params} label="Select user" variant="outlined" fullWidth />}
             />
             <List>
                 {tasks.map((item) => {
@@ -103,8 +103,10 @@ export function Tasks() {
                             </ListItemIcon>
                             <ListItemText id={labelId} primary={item.text}/>
                             <ListItemSecondaryAction>
-                                <IconButton edge="end" aria-label="comments" onClick={() => {
-                                }}>
+                                <IconButton 
+                                    edge="end" 
+                                    aria-label="delete button" 
+                                    onClick={() => {dispatch(deleteAsync(item.todoTaskId))}}>
                                     <DeleteIcon/>
                                 </IconButton>
                             </ListItemSecondaryAction>
@@ -112,7 +114,7 @@ export function Tasks() {
                     );
                 })}
             </List>
-            
+
             <Divider/>
 
             <ValidatorForm

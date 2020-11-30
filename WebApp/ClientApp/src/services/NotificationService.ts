@@ -31,7 +31,6 @@ class NotificationService {
     }
 
 
-
     onErrorMessage(message: string) {
         toast.error(message, {
             position: toast.POSITION.TOP_RIGHT, autoClose: 3000

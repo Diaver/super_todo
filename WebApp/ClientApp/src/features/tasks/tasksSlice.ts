@@ -8,7 +8,7 @@ import TodoTasksApi from "../../api/TodoTasksApi";
 interface TasksState {
     tasks: ITodoTaskResponse[];
     users: ITodoTaskUserResponse[];
-    selectedUser: ITodoTaskUserResponse | undefined;
+    selectedUser: ITodoTaskUserResponse;
     loading: boolean;
     text: string
 }
@@ -16,7 +16,7 @@ interface TasksState {
 const initialState: TasksState = {
     tasks: [],
     users: [],
-    selectedUser: undefined,
+    selectedUser: {userId:"", name:""},
     loading: false,
     text: ""
 };
@@ -43,6 +43,9 @@ export const tasksSlice = createSlice({
         },
         addTask: (state, action: PayloadAction<ITodoTaskResponse>) => {
             state.tasks = [...state.tasks, action.payload];
+        },
+        deleteTask: (state, action: PayloadAction<string>) => {
+            state.tasks =  state.tasks.filter(task=> task.todoTaskId != action.payload);
         },
         finish: (state) => {
             state.text = "";
@@ -115,6 +118,27 @@ export const addAsync = (): AppThunk => async (dispatch, getState) => {
 
     dispatch(tasksSlice.actions.setLoading(false));
     dispatch(tasksSlice.actions.finish());
+};
+
+export const deleteAsync = (todoTaskId: string): AppThunk => async (dispatch, getState) => {
+    dispatch(tasksSlice.actions.setLoading(true));
+    try {
+
+        const serverRequest = await TodoTasksApi.delete({
+            todoTaskId,
+        });
+
+        if (serverRequest.data.isSuccess) {
+            dispatch(tasksSlice.actions.deleteTask(todoTaskId));
+            NotificationService.onSuccessMessage("Task deleted");
+        } else {
+            NotificationService.onRequestFailed(serverRequest.data, 5000)
+        }
+    } catch (e) {
+        NotificationService.onPromiseRejected(e);
+    }
+
+    dispatch(tasksSlice.actions.setLoading(false));
 };
 
 
