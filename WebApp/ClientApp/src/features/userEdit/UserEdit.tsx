@@ -12,6 +12,7 @@ import {saveAsync, loadingSelector, loadUserAsync, userEditSlice, userSelector} 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {useParams} from "react-router-dom";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import PeopleIcon from "@material-ui/icons/People";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -79,7 +80,7 @@ export function UserEdit() {
                     
                     <Grid item>
                         <Typography variant={"h4"}>
-                            User Edit
+                            <PeopleIcon/> User Edit
                         </Typography>
                     </Grid>
                     

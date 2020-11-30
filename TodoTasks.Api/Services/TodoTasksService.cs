@@ -52,16 +52,21 @@ namespace Tasks.Api.Services
             return ApiResult<IEnumerable<TodoTaskResponse>>.Ok(userResponses);
         }
 
-        public async Task<ApiResult> Add(TodoTaskCreateRequest todoTaskCreateRequest)
+        public async Task<ApiResult<TodoTaskResponse>> Add(TodoTaskCreateRequest todoTaskCreateRequest)
         {
-            await _todoTaskRepository.CreateAsync(new TodoTask
+            TodoTask todoTask = await _todoTaskRepository.CreateAsync(new TodoTask
             {
                 Text = todoTaskCreateRequest.Text,
                 UserId = todoTaskCreateRequest.UserId,
                 TodoTaskStatus = TodoTaskStatus.Active,
             });
 
-            return ApiResult.Ok();
+            return ApiResult<TodoTaskResponse>.Ok(new TodoTaskResponse
+            {
+                TodoTaskId = todoTask.TodoTaskId,
+                UserId = todoTask.UserId,
+                Text = todoTask.Text,
+            });
         }
 
         public async Task<ApiResult> Delete(TodoTaskIdRequest todoTaskIdRequest)

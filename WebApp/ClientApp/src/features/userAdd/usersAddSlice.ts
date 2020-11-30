@@ -46,7 +46,6 @@ export const usersAddSlice = createSlice({
 });
 
 export const addAsync = (): AppThunk => async (dispatch, getState) => {
-
     dispatch(usersAddSlice.actions.setLoading(true));
     try {
         let registerRequest = getState().usersAdd.user;
@@ -67,7 +66,6 @@ export const addAsync = (): AppThunk => async (dispatch, getState) => {
     dispatch(usersAddSlice.actions.setLoading(false));
     dispatch(usersAddSlice.actions.finish());
 };
-
 
 export const userSelector = (state: RootState) => state.usersAdd.user;
 export const loadingSelector = (state: RootState) => state.usersAdd.loading;

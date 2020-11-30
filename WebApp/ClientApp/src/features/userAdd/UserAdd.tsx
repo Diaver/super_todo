@@ -11,6 +11,7 @@ import TodayIcon from '@material-ui/icons/Today';
 import {addAsync, loadingSelector, usersAddSlice, userSelector} from "./usersAddSlice";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -68,7 +69,7 @@ export function UserAdd() {
                     
                     <Grid item>
                         <Typography variant={"h4"}>
-                            User Add
+                            <PersonAddIcon/> User Add
                         </Typography>
                     </Grid>
                     
@@ -112,7 +113,6 @@ export function UserAdd() {
                         errorMessages={["This field is required"]}
 
                     />
-
                 </div>
 
                 <div className={classes.textBoxWithIconContainer}>

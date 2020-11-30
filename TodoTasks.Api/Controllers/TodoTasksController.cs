@@ -36,14 +36,14 @@ namespace Tasks.Api.Controllers
             return _todoTasksService.GetAllUsers();
         }
 
-        [HttpGet("getById/{userId}")]
-        public Task<ApiResult<IEnumerable<TodoTaskResponse>>> GetByUserId([FromQuery] string userId)
+        [HttpGet("getByUserId/{userId}")]
+        public Task<ApiResult<IEnumerable<TodoTaskResponse>>> GetByUserId(string userId)
         {
             return _todoTasksService.GetByUserId(userId);
         }
 
         [HttpPut("add")]
-        public Task<ApiResult> Add([FromBody] TodoTaskCreateRequest todoTaskCreateRequest)
+        public Task<ApiResult<TodoTaskResponse>> Add([FromBody] TodoTaskCreateRequest todoTaskCreateRequest)
         {
             return _todoTasksService.Add(todoTaskCreateRequest);
         }

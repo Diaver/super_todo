@@ -8,12 +8,16 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
-import {Container, TextField, Typography} from "@material-ui/core";
+import {Container, Divider, TextField, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {itemsSelector, loadUsersAsync, tasksSlice, usersSelector} from "./tasksSlice";
+import {addAsync, loadTasksByUserIdAsync, loadUsersAsync, selectedUserSelector, tasksSelector, tasksSlice, textSelector, usersSelector} from "./tasksSlice";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
+import {usersAddSlice} from "../userAdd/usersAddSlice";
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import {ITodoTaskUserResponse} from "../../apiModels/todoTasksApi/Response/ITodoTaskUserResponse";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -29,35 +33,62 @@ const useStyles = makeStyles((theme: Theme) =>
                 transform: "scale(1)"
             }
         },
+        textBoxWithIconContainer: {
+            display: "flex",
+            alignItems: "end",
+            marginTop: 32,
+            "& div": {
+                width: "100%"
+            },
+        },
+
+        textBoxWithIcon: {
+            flexGrow: 1,
+            marginLeft: 8
+        },
+        form: {
+            width: '100%', // Fix IE 11 issue.
+        },
     }),
 );
 
 export function Tasks() {
     const classes = useStyles();
-    const items = useSelector(itemsSelector);
+    const tasks = useSelector(tasksSelector);
     const users = useSelector(usersSelector);
+    const text = useSelector(textSelector);
+    const selectedUser = useSelector(selectedUserSelector);
     const dispatch = useDispatch();
-    const [newItemText, setNewItemText] = React.useState<string>("");
 
     useEffect(() => {
         dispatch(loadUsersAsync());
     }, []);
 
+    const onChange = async (event: any, newValue: any) => {
+        await dispatch(tasksSlice.actions.setSelectedUser(newValue))
+        dispatch(loadTasksByUserIdAsync())
+        console.log(newValue);
+    }
 
     return (
         <Container component="main" maxWidth="md">
             <Typography variant={"h4"}>
-                Tasks
+                <AssignmentIcon/> Tasks
             </Typography>
+            
             <Autocomplete
                 id="combo-box-demo"
                 options={users}
+                value={selectedUser}
+                getOptionSelected={(option: ITodoTaskUserResponse, value: ITodoTaskUserResponse) =>  value.userId === option.userId}
+                onChange={onChange}
+                fullWidth
                 getOptionLabel={(option) => option.name}
-                style={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Select user" variant="outlined" />}
+                style={{ marginTop: 32}}
+                renderInput={(params) => <TextField {...params} label="Select user" variant="outlined" fullWidth/>}
             />
             <List>
-                {items.map((item) => {
+                {tasks.map((item) => {
                     const labelId = `checkbox-list-label-${item.todoTaskId}`;
 
                     return (
@@ -69,10 +100,11 @@ export function Tasks() {
                                     disableRipple
                                     inputProps={{'aria-labelledby': labelId}}
                                 />
-                            </ListItemIcon> 
-                            <ListItemText id={labelId}  primary={item.text}/>
-                            <ListItemSecondaryAction >
-                                <IconButton edge="end" aria-label="comments" onClick={()=> {}}>
+                            </ListItemIcon>
+                            <ListItemText id={labelId} primary={item.text}/>
+                            <ListItemSecondaryAction>
+                                <IconButton edge="end" aria-label="comments" onClick={() => {
+                                }}>
                                     <DeleteIcon/>
                                 </IconButton>
                             </ListItemSecondaryAction>
@@ -80,26 +112,37 @@ export function Tasks() {
                     );
                 })}
             </List>
-            <TextField
-                fullWidth
-                label="New Task"
-                helperText="Please enter text for new task"
-                value={newItemText}
-                onChange={event => setNewItemText(event.target.value)}
-                onKeyPress={ev => {
-                    if (ev.key === 'Enter') {
-                       /* dispatch(tasksSlice.actions.addItem(newItemText));*/
-                        setNewItemText("");
-                    }
+            
+            <Divider/>
+
+            <ValidatorForm
+                className={classes.form}
+                onSubmit={() => {
+                    dispatch(addAsync());
                 }}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <CommentIcon/>
-                        </InputAdornment>
-                    ),
-                }}
-            />
+                onError={errors => console.log(errors)}
+            >
+                {
+                    selectedUser &&
+                    <div className={classes.textBoxWithIconContainer}>
+                        <CommentIcon/>
+                        <TextValidator
+                            variant="outlined"
+                            name="Text"
+                            className={classes.textBoxWithIcon}
+                            fullWidth={true}
+                            label="New Task"
+                            helperText="Please enter text for new task"
+                            value={text}
+                            onChange={(event: any) => dispatch(tasksSlice.actions.setText(event.target.value))}
+                            validators={['required']}
+                            errorMessages={["This field is required"]}
+
+                        />
+                    </div>
+                }
+            </ValidatorForm>
+
         </Container>
     );
 }

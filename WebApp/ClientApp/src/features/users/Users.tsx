@@ -10,6 +10,7 @@ import {loadUsersAsync, usersSelector} from "./usersSlice";
 import AddIcon from '@material-ui/icons/Add';
 import {NavLink as RouterLink} from "react-router-dom";
 import {AccountCircle} from "@material-ui/icons";
+import PeopleIcon from '@material-ui/icons/People';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -53,7 +54,7 @@ export function Users() {
                 alignItems="center">
                 <Grid item>
                     <Typography variant={"h4"}>
-                        Users
+                        <PeopleIcon/> Users
                     </Typography>
                 </Grid>
                 <Grid item>

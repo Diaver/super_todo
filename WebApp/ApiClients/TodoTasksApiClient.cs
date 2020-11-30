@@ -38,7 +38,7 @@ namespace WebApp.ApiClients
             return _restClient.GetByUserId(userId);
         }
 
-        public Task<ApiResult> Add(TodoTaskCreateRequest todoTaskCreateRequest)
+        public Task<ApiResult<TodoTaskResponse>> Add(TodoTaskCreateRequest todoTaskCreateRequest)
         {
             return _restClient.Add(todoTaskCreateRequest);
         }

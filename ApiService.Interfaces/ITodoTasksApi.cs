@@ -19,7 +19,7 @@ namespace ApiService.Interfaces
         Task<ApiResult<IEnumerable<TodoTaskResponse>>> GetByUserId(string userId);
 
         [Put("/add")]
-        Task<ApiResult> Add(TodoTaskCreateRequest todoTaskCreateRequest);
+        Task<ApiResult<TodoTaskResponse>> Add(TodoTaskCreateRequest todoTaskCreateRequest);
         
         [Put("/delete")]
         Task<ApiResult> Delete(TodoTaskIdRequest todoTaskIdRequest);
