@@ -12,13 +12,17 @@ namespace Services
 
         public AppConfigurationProvider()
         {
-            string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            
+            string environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
+
+            environment = string.IsNullOrWhiteSpace(environment)
+                ? "Production"
+                : environment;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{environment}.json", optional: true);
-            
+
 
             Configuration = builder.Build();
         }

@@ -1,0 +1,1 @@
+﻿docker build -f ./Users.Api/Dockerfile -t super_todo/users_api:0.1 .

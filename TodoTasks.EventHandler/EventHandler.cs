@@ -54,24 +54,22 @@ namespace TodoTasks.EventHandler
                 {
                     case MessageType.UserAdded:
                     case MessageType.UserUpdated:
-                        await HandleAsync(messageObject.ToObject<UserAddedOrUpdated>());
+                        await HandleUpdatedAsync(messageObject.ToObject<UserAddedOrUpdated>());
                         break;
                     case MessageType.UserDeleted:
-                        await HandleAsync(messageObject.ToObject<UserAddedOrUpdated>());
+                        await HandleDeletedAsync(messageObject.ToObject<UserAddedOrUpdated>());
                         break;
                 }
             }
             catch (Exception ex)
             {
-               // string messageId = messageObject.Property("MessageId") != null ? messageObject.Property("MessageId").Value<string>() : "[unknown]";
-                Log.Error(ex, "Error while handling {MessageType} message with id.", messageType);
+                Log.Error(ex, "Error while handling {MessageType} message with {message}.", messageType, message);
             }
 
-            // always akcnowledge message - any errors need to be dealt with locally.
             return true;
         }
 
-        private async Task HandleAsync(UserAddedOrUpdated user)
+        private async Task HandleUpdatedAsync(UserAddedOrUpdated user)
         {
             Log.Information("UserAddedOrUpdated: {UserId}, {Name}, {Type}, Owner Id: {OwnerId}", 
                 user.UserId, user.Name);
@@ -90,6 +88,14 @@ namespace TodoTasks.EventHandler
                 Name = user.Name
             });
          
+        }
+        
+        private async Task HandleDeletedAsync(UserAddedOrUpdated user)
+        {
+            Log.Information("UserDeleted: {UserId}, {Name}, {Type}, Owner Id: {OwnerId}", 
+                user.UserId, user.Name);
+            
+            await _usersRepository.RemoveAsync(user.UserId);
         }
 
     }

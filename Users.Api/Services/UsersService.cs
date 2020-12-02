@@ -6,6 +6,7 @@ using ApiService.Models.Api.UsersApi.Request;
 using ApiService.Models.Api.UsersApi.Response;
 using Messaging;
 using Messaging.Interfaces;
+using Messaging.Models;
 using Users.Database.Models;
 using Users.Database.Repositories;
 
@@ -64,8 +65,8 @@ namespace Users.Api.Services
                 DateOfBirth = userCreateRequest.DateOfBirth,
             });
 
-            _ = _messagePublisher.PublishMessageAsync(MessageType.UserAdded, user, "");
-            
+            _ = _messagePublisher.PublishMessageAsync(MessageType.UserAdded, ConvertTo(user), "");
+
             return ApiResult.Ok();
         }
 
@@ -83,8 +84,35 @@ namespace Users.Api.Services
             user.Name = userUpdateRequest.Name;
             await _usersRepository.UpdateAsync(user);
 
-            _ = _messagePublisher.PublishMessageAsync(MessageType.UserUpdated, user, "");
+            _ = _messagePublisher.PublishMessageAsync(MessageType.UserUpdated, ConvertTo(user), "");
             return ApiResult.Ok();
+        }
+
+        public async Task<ApiResult> Delete(UserIdRequest userIdRequest)
+        {
+            User user = await _usersRepository.FindAsync(userIdRequest.UserId);
+
+            if (user == null)
+            {
+                return ApiResult.Bad(ErrorMessagesEnum.UserNotFound, "User not found");
+            }
+
+            await _usersRepository.RemoveAsync(userIdRequest.UserId);
+
+            _ = _messagePublisher.PublishMessageAsync(MessageType.UserDeleted, ConvertTo(user), "");
+
+            return ApiResult.Ok();
+        }
+
+        private UserAddedOrUpdated ConvertTo(User user)
+        {
+            return new UserAddedOrUpdated
+            {
+                UserId = user.UserId,
+                Name = user.Name,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+            };
         }
     }
 }

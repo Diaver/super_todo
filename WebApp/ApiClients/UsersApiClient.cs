@@ -42,5 +42,10 @@ namespace WebApp.ApiClients
         {
             return _restClient.Update(userResponse);
         }
+
+        public Task<ApiResult> Delete(UserIdRequest userIdRequest)
+        {
+            return _restClient.Delete(userIdRequest);
+        }
     }
 }

@@ -1,1 +1,1 @@
-﻿docker build -f ./TodoTasks.EventHandler/Dockerfile -t super_todo/tasks_eventhandler:0.1 .
+﻿docker build -f ./TodoTasks.EventHandler/Dockerfile -t super_todo/todotasks_eventhandler:0.1 .

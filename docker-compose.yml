@@ -2,7 +2,7 @@ version: '3.2'
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: todo_container_rabbitmq
+    container_name: supertodo_rabbitmq
     volumes:
       - rabbitmqdata:/var/lib/rabbitmq
     ports:
@@ -14,7 +14,7 @@ services:
 
   sqlserver:
     image: microsoft/mssql-server-linux:latest
-    container_name: todo_container_sqlserver
+    container_name: supertodo_sqlserver
     volumes:
       - sqlserverdata:/var/opt/mssql
     ports:
@@ -26,14 +26,14 @@ services:
 
   mailserver:
     image: djfarrelly/maildev
-    container_name: todo_container_mailserver
+    container_name: supertodo_mailserver
     ports:
       - "25:25"
       - "4000:80"
 
   logserver:
     image: datalust/seq:latest
-    container_name: todo_container_logserver
+    container_name: supertodo_logserver
     ports:
       - "5341:80"
     environment:
@@ -42,25 +42,49 @@ services:
   tasks_api:
     image: super_todo/tasks_api:0.1
     build: TodoTasks.Api
-    container_name: todo_container_tasks_api
+    container_name: supertodo_tasks_api
     depends_on:
       - rabbitmq
       - sqlserver
     ports:
       - "5000:5000"
     environment:
-      - DOTNET_ENVIRONMENT=Production
-      
+      - ASPNETCORE_ENVIRONMENT=Production
+
+  users_api:
+    image: super_todo/users_api:0.1
+    build: Users.Api
+    container_name: supertodo_users_api
+    depends_on:
+      - rabbitmq
+      - sqlserver
+      - todotasks_eventhandler
+    ports:
+      - "6000:6000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+
   web_app:
     image: super_todo/web_app:0.1
     build: WebApp
-    container_name: todo_container_web_app
+    container_name: supertodo_web_app
     depends_on:
       - tasks_api
+      - users_api
     ports:
       - "7000:7000"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+
+  todotasks_eventhandler:
+    image: super_todo/todotasks_eventhandler:0.1
+    build: TodoTasks.EventHandler
+    container_name: supertodo_todotasks_eventHandler
+    depends_on:
+      - rabbitmq
+      - sqlserver
+    environment:
+      - DOTNET_ENVIRONMENT=Production
 
 volumes:
   sqlserverdata:

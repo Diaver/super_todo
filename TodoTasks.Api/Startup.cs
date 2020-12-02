@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using Services;
 using Tasks.Api.Services;
 using TodoTasks.Database;
@@ -24,6 +25,8 @@ namespace Tasks.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureLogging();
+
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "TodoTasks.Api", Version = "v1"}); });
             RegisterServices(services);
@@ -35,9 +38,17 @@ namespace Tasks.Api
             services.AddScoped<IAppConfigurationProvider, AppConfigurationProvider>();
             services.AddScoped<ITodoTasksDbContextFactory, TodoTasksDbContextFactory>();
             services.AddScoped<ITodoTasksService, TodoTasksService>();
-            
+
             services.AddTransient<ITodoTaskRepository, TodoTaskRepository>();
             services.AddTransient<IUsersRepository, UsersRepository>();
+        }
+
+        private void ConfigureLogging()
+        {
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(Configuration)
+                .Enrich.WithMachineName()
+                .CreateLogger();
         }
 
         private void ApplyMigrations(IServiceCollection services)

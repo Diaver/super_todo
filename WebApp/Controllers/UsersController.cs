@@ -47,5 +47,11 @@ namespace WebApp.Controllers
         {
             return _usersApi.Update(userResponse);
         }
+        
+        [HttpPut("delete")]
+        public Task<ApiResult> Delete(UserIdRequest userIdRequest)
+        {
+            return _usersApi.Delete(userIdRequest);
+        }
     }
 }

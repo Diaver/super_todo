@@ -4,11 +4,13 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS  build-env
 WORKDIR /app
 
 # Copy necessary files and restore as distinct layer
-COPY ["Users.Api/Users.Api.csproj", "Users.Api/"]
 COPY ["ApiService.Interfaces/ApiService.Interfaces.csproj", "ApiService.Interfaces/"]
 COPY ["ApiService.Models/ApiService.Models.csproj", "ApiService.Models/"]
-COPY ["Services/Services.csproj", "Services/"]
 COPY ["Messaging/Messaging.csproj", "Messaging/"]
+COPY ["Services/Services.csproj", "Services/"]
+COPY ["Users.Api/Users.Api.csproj", "Users.Api/"]
+COPY ["Users.Database/Users.Database.csproj", "Users.Database/"]
+
 RUN dotnet restore "Users.Api/Users.Api.csproj"
 
 

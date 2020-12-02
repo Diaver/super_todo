@@ -20,5 +20,8 @@ namespace ApiService.Interfaces
         
         [Put("/update")]
         Task<ApiResult> Update(UserUpdateRequest userUpdateRequest);
+        
+        [Put("/delete")]
+        Task<ApiResult> Delete(UserIdRequest userIdRequest);
     }
 }
