@@ -58,7 +58,6 @@ services:
     depends_on:
       - rabbitmq
       - sqlserver
-      - todotasks_eventhandler
     ports:
       - "6000:6000"
     environment:
