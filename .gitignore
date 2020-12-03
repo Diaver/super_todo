@@ -4,8 +4,8 @@
 /WebApp/ClientApp/node_modules
 /WebApp/ClientApp/build
 .idea/
-.idea/workspace.xml
-.idea/contentModel.xml
+#.idea/workspace.xml
+#.idea/contentModel.xml
 # User-specific files
 *.suo
 *.user

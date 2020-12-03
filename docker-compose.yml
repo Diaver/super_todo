@@ -86,6 +86,16 @@ services:
     environment:
       - DOTNET_ENVIRONMENT=Production
 
+  notifications:
+    image: super_todo/notifications:0.1
+    build: Notifications
+    container_name: supertodo_notifications
+    depends_on:
+      - rabbitmq
+      - mailserver
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+
 volumes:
   sqlserverdata:
     external: true

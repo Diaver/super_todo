@@ -7,6 +7,7 @@ using ApiService.Models.Api.UsersApi.Response;
 using Messaging;
 using Messaging.Interfaces;
 using Messaging.Models;
+using Serilog;
 using Users.Database.Models;
 using Users.Database.Repositories;
 
@@ -65,7 +66,8 @@ namespace Users.Api.Services
                 DateOfBirth = userCreateRequest.DateOfBirth,
             });
 
-            _ = _messagePublisher.PublishMessageAsync(MessageType.UserAdded, ConvertTo(user), "");
+            Log.Information("Users.Api: User added {UserId}, {Name}", user.UserId, user.Name);
+            await _messagePublisher.PublishMessageAsync(MessageType.UserAdded, ConvertTo(user), "");
 
             return ApiResult.Ok();
         }
@@ -84,7 +86,8 @@ namespace Users.Api.Services
             user.Name = userUpdateRequest.Name;
             await _usersRepository.UpdateAsync(user);
 
-            _ = _messagePublisher.PublishMessageAsync(MessageType.UserUpdated, ConvertTo(user), "");
+       
+            await _messagePublisher.PublishMessageAsync(MessageType.UserUpdated, ConvertTo(user), "");
             return ApiResult.Ok();
         }
 
@@ -99,7 +102,7 @@ namespace Users.Api.Services
 
             await _usersRepository.RemoveAsync(userIdRequest.UserId);
 
-            _ = _messagePublisher.PublishMessageAsync(MessageType.UserDeleted, ConvertTo(user), "");
+            await _messagePublisher.PublishMessageAsync(MessageType.UserDeleted, ConvertTo(user), "");
 
             return ApiResult.Ok();
         }

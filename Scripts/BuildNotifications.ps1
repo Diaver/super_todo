@@ -1,0 +1,1 @@
+﻿docker build -f ./Notifications/Dockerfile -t super_todo/notifications:0.1 .

@@ -7,20 +7,18 @@ using Messaging.Models;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Linq;
 using Serilog;
-using TodoTasks.Database.Models;
-using TodoTasks.Database.Repositories;
 
-namespace TodoTasks.EventHandler
+namespace Notifications
 {
     public class EventHandler : IHostedService, IMessageHandlerCallback
     {
         private readonly IMessageHandler _messageHandler;
-        private readonly IUsersRepository _usersRepository;
+        private readonly IMailSender _mailSender;
 
-        public EventHandler(IMessageHandler messageHandler, IUsersRepository usersRepository)
+        public EventHandler(IMessageHandler messageHandler, IMailSender mailSender)
         {
             _messageHandler = messageHandler;
-            _usersRepository = usersRepository;
+            _mailSender = mailSender;
         }
 
         public void Start()
@@ -45,7 +43,7 @@ namespace TodoTasks.EventHandler
             return Task.CompletedTask;
         }
 
-        public async Task<bool> HandleMessageAsync(string messageType, string message)
+        public  Task<bool> HandleMessageAsync(string messageType, string message)
         {
             JObject messageObject = MessageSerializer.Deserialize(message);
             try
@@ -53,11 +51,10 @@ namespace TodoTasks.EventHandler
                 switch (messageType)
                 {
                     case MessageType.UserAdded:
-                    case MessageType.UserUpdated:
-                        await HandleUpdatedAsync(messageObject.ToObject<UserAddedOrUpdated>());
+                         HandleAddedAsync(messageObject.ToObject<UserAddedOrUpdated>());
                         break;
                     case MessageType.UserDeleted:
-                        await HandleDeletedAsync(messageObject.ToObject<UserAddedOrUpdated>());
+                         HandleDeletedAsync(messageObject.ToObject<UserAddedOrUpdated>());
                         break;
                 }
             }
@@ -66,35 +63,20 @@ namespace TodoTasks.EventHandler
                 Log.Error(ex, "Error while handling {MessageType} message with {message}.", messageType, message);
             }
 
-            return true;
+            return Task.FromResult(true);
         }
 
-        private async Task HandleUpdatedAsync(UserAddedOrUpdated user)
+        private void HandleAddedAsync(UserAddedOrUpdated user)
         {
-            Log.Information("UserAddedOrUpdated: {UserId}, {Name}", user.UserId, user.Name);
+            Log.Information("UserAddedOrUpdated: {UserId}, {Name}, {Type}, Owner Id: {OwnerId}", user.UserId, user.Name);
             
-            User existedUser = await _usersRepository.FindAsync(user.UserId);
-            if (existedUser != null)
-            {
-                existedUser.Name = user.Name;
-                await _usersRepository.UpdateAsync(existedUser);
-                return;
-            }
-            
-            await _usersRepository.CreateAsync(new User
-            {
-                UserId = user.UserId,
-                Name = user.Name
-            });
-         
+            _mailSender.SendRegistrationSuccessEmail(user);
         }
         
-        private async Task HandleDeletedAsync(UserAddedOrUpdated user)
+        private void HandleDeletedAsync(UserAddedOrUpdated user)
         {
-            Log.Information("UserDeleted: {UserId}, {Name}", user.UserId, user.Name);
-            
-            await _usersRepository.RemoveAsync(user.UserId);
+            Log.Information("UserDeleted: {UserId}, {Name}, {Type}, Owner Id: {OwnerId}", user.UserId, user.Name);
+            _mailSender.SendDeletedEmail(user);
         }
-
     }
 }
