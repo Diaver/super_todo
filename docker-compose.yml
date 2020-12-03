@@ -47,7 +47,7 @@ services:
       - rabbitmq
       - sqlserver
     ports:
-      - "5000:5000"
+      - "7100:7100"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
 
@@ -58,8 +58,9 @@ services:
     depends_on:
       - rabbitmq
       - sqlserver
+      - todotasks_eventhandler
     ports:
-      - "6000:6000"
+      - "7200:7200"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
 

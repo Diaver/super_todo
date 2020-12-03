@@ -15,7 +15,7 @@ namespace Services
             string environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
 
             environment = string.IsNullOrWhiteSpace(environment)
-                ? "Production"
+                ? Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
                 : environment;
 
             var builder = new ConfigurationBuilder()

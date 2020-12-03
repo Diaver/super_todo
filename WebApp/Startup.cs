@@ -71,6 +71,7 @@ namespace WebApp
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             
+            app.UseSerilogRequestLogging();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

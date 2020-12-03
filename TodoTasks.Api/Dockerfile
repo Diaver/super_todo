@@ -22,9 +22,8 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
 COPY --from=build-env /app/out .
 
 # Expose ports
-EXPOSE 5000/tcp
-ENV ASPNETCORE_URLS http://*:5000
-HEALTHCHECK --interval=30s --timeout=3s --retries=1 CMD curl --silent --fail http://localhost:5000/hc || exit 1
+EXPOSE 7100/tcp
+ENV ASPNETCORE_URLS http://*:7100
 
 # Start
 ENTRYPOINT ["dotnet", "TodoTasks.Api.dll"]

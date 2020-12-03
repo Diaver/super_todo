@@ -29,7 +29,6 @@ COPY --from=clientBuild ./ClientApp/build ./ClientApp/build
 # Expose ports
 EXPOSE 7000/tcp
 ENV ASPNETCORE_URLS http://*:7000
-HEALTHCHECK --interval=30s --timeout=3s --retries=1 CMD curl --silent --fail http://localhost:7000/hc || exit 1
 
 # Start
 ENTRYPOINT ["dotnet", "WebApp.dll"]

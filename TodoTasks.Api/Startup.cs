@@ -29,6 +29,7 @@ namespace Tasks.Api
 
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "TodoTasks.Api", Version = "v1"}); });
+
             RegisterServices(services);
             ApplyMigrations(services);
         }
