@@ -3,6 +3,7 @@ import {IApiResult, IApiResultBase} from "../apiModels/common/IApiResult";
 import {IUserCreateRequest} from "../apiModels/usersApi/Request/IUserCreateRequest";
 import {IUserUpdateRequest} from "../apiModels/usersApi/Request/IUserUpdateRequest";
 import {IUserResponse} from "../apiModels/usersApi/Response/IUserResponse";
+import {IUserIdRequest} from "../apiModels/usersApi/Request/IUserIdRequest";
 
 class UsersApi {
     getAll(): AxiosPromise<IApiResult<IUserResponse[]>> {
@@ -25,6 +26,14 @@ class UsersApi {
             method: 'put',
             url: 'api/users/update',
             data: userResponse
+        },)
+    }
+
+    delete(userIdRequest: IUserIdRequest): AxiosPromise<IApiResultBase> {
+        return axios({
+            method: 'put',
+            url: 'api/users/delete',
+            data: userIdRequest
         },)
     }
     

@@ -8,7 +8,7 @@ import {IUserResponse} from "../../apiModels/usersApi/Response/IUserResponse";
 
 const getUserRequestInitialState: () => IUserResponse = () => {
     return {
-        userId:"",
+        userId: "",
         name: "",
         email: "",
         dateOfBirth: "",
@@ -37,7 +37,7 @@ export const userEditSlice = createSlice({
         userLoaded: (state, action: PayloadAction<IUserResponse>) => {
             state.user = action.payload
         },
-        
+
         updateFieldValue: (state, action: PayloadAction<IFieldUpdateDto>) => {
             state.user = {
                 ...state.user,
@@ -85,7 +85,31 @@ export const saveAsync = (): AppThunk => async (dispatch, getState) => {
     } catch (e) {
         NotificationService.onPromiseRejected(e);
     }
-    
+
+    dispatch(userEditSlice.actions.setLoading(false));
+    dispatch(userEditSlice.actions.finish());
+};
+
+export const deleteAsync = (): AppThunk => async (dispatch, getState) => {
+
+    dispatch(userEditSlice.actions.setLoading(true));
+    try {
+
+        const userId = getState().userEdit.user?.userId as string;
+
+        const serverRequest = await UsersApi.delete({userId});
+
+        if (serverRequest.data.isSuccess) {
+            NotificationService.onSuccessMessage("User deleted");
+            NavigationService.go("/users");
+        } else {
+
+            NotificationService.onRequestFailed(serverRequest.data, 5000)
+        }
+    } catch (e) {
+        NotificationService.onPromiseRejected(e);
+    }
+
     dispatch(userEditSlice.actions.setLoading(false));
     dispatch(userEditSlice.actions.finish());
 };

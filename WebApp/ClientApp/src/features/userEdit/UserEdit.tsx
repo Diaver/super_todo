@@ -3,12 +3,13 @@ import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import {Backdrop, Container, Fab, Grid, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
 import {NavLink as RouterLink} from "react-router-dom";
 import {AccountCircle} from "@material-ui/icons";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import TodayIcon from '@material-ui/icons/Today';
-import {saveAsync, loadingSelector, loadUserAsync, userEditSlice, userSelector} from "./userEditSlice";
+import {saveAsync, loadingSelector, loadUserAsync, userEditSlice, userSelector, deleteAsync} from "./userEditSlice";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {useParams} from "react-router-dom";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -93,6 +94,11 @@ export function UserEdit() {
                             <Grid item>
                                 <Fab aria-label="cancel" component={RouterLink} to="/users">
                                     <ArrowBackIcon/>
+                                </Fab>
+                            </Grid>
+                            <Grid item>
+                                <Fab color="primary" aria-label="delete" onClick={()=> dispatch(deleteAsync())}>
+                                    <DeleteIcon/>
                                 </Fab>
                             </Grid>
                             <Grid item>
