@@ -7,6 +7,7 @@ import {Tasks} from "../features/tasks/Tasks";
 import {Users} from "../features/users/Users";
 import {UserAdd} from "../features/userAdd/UserAdd";
 import {UserEdit} from "../features/userEdit/UserEdit";
+import {UserLogin} from "../features/userLogin/UserLogin";
 
 export default class HistoryBrowserRouter extends BrowserRouter {
     render() {
@@ -40,6 +41,12 @@ export default class HistoryBrowserRouter extends BrowserRouter {
                     <Route exact path="/user/edit/:userId">
                         <MainLayout showSearchBar={true}>
                             <UserEdit/>
+                        </MainLayout>
+                    </Route>
+                    <Route
+                        exact path="/login">
+                        <MainLayout showFooter={true}>
+                            <UserLogin/>
                         </MainLayout>
                     </Route>
                     <Route>

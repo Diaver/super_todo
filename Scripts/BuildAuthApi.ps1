@@ -1,0 +1,1 @@
+﻿docker build -f ./Auth.Api/Dockerfile -t super_todo/auth_api:0.1 .

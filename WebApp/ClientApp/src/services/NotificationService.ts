@@ -1,5 +1,6 @@
 import {toast} from "react-toastify";
 import {IApiResultBase} from "../apiModels/common/IApiResult";
+import SessionService from "./SessionService";
 
 class NotificationService {
 
@@ -10,16 +11,22 @@ class NotificationService {
 
         console.log("Error:" + error);
 
-        toast.error(error, {
+        let errorMessage = "Server error. Please try again later.";
+        
+        if(error.message.includes("timeout")){
+            errorMessage = "Service is unavailable. Please try again later.";
+        }
+        
+        toast.error(errorMessage, {
             position: toast.POSITION.TOP_CENTER,  autoClose: 5000
         });
     }
 
     static tryHandlePromiseRejectedError(error: any) {
-      /*  if (error.response && error.response.status === 401) {
+        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
             SessionService.redirectToLogin();
             return true;
-        }*/
+        }
 
         return false;
     }

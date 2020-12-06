@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoTasks.EventHandler", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifications", "Notifications\Notifications.csproj", "{4E874C66-89BF-4873-BE9E-07DA38482054}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Api", "Auth.Api\Auth.Api.csproj", "{D18CCAE2-706F-469F-B7F1-4A6924EC9561}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,5 +78,9 @@ Global
 		{4E874C66-89BF-4873-BE9E-07DA38482054}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E874C66-89BF-4873-BE9E-07DA38482054}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E874C66-89BF-4873-BE9E-07DA38482054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D18CCAE2-706F-469F-B7F1-4A6924EC9561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D18CCAE2-706F-469F-B7F1-4A6924EC9561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D18CCAE2-706F-469F-B7F1-4A6924EC9561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D18CCAE2-706F-469F-B7F1-4A6924EC9561}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

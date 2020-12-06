@@ -6,10 +6,12 @@ using ApiService.Models.Api.UsersApi.Request;
 using ApiService.Models.Api.UsersApi.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebApp.Security;
 
 namespace WebApp.Controllers
 {
     [ApiController]
+    [AuthorizeUser]
     [Route("/api/[controller]")]
     public class UsersController : ControllerBase, IUsersApi
     {

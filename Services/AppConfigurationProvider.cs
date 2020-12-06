@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using Services.Models;
 
 namespace Services
 {
@@ -25,6 +26,19 @@ namespace Services
 
 
             Configuration = builder.Build();
+        }
+
+
+        public JwtSettings GetJwtSettings()
+        {
+            IConfigurationSection configurationSection = Configuration.GetSection("JwtSettings");
+
+            if (configurationSection == null)
+            {
+                throw new InvalidConfigurationException($"Required config-section 'JwtSettings' not found.");
+            }
+
+            return configurationSection.Get<JwtSettings>();
         }
     }
 }

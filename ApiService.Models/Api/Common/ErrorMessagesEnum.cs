@@ -3,6 +3,7 @@
     public enum ErrorMessagesEnum
     {
         UserNotFound = 0,
-        TodoTaskNotFound = 1
+        TodoTaskNotFound = 1,
+        LoginFailed = 2
     }
 }

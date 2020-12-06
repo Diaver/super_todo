@@ -6,10 +6,12 @@ using ApiService.Models.Api.TodoTasksApi.Request;
 using ApiService.Models.Api.TodoTasksApi.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebApp.Security;
 
 namespace WebApp.Controllers
 {
     [ApiController]
+    [AuthorizeUser]
     [Route("/api/[controller]")]
     public class TodoTasksController : ControllerBase, ITodoTasksApi
     {

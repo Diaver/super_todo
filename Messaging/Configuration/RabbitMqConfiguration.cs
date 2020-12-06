@@ -1,6 +1,7 @@
 ﻿using Messaging.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Services;
 
 namespace Messaging.Configuration
 {

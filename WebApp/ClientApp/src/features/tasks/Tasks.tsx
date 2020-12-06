@@ -15,6 +15,7 @@ import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import {ITodoTaskUserResponse} from "../../apiModels/todoTasksApi/Response/ITodoTaskUserResponse";
 import {TodoTaskStatus} from "../../apiModels/common/TodoTaskStatus";
+import {ITodoTaskResponse} from "../../apiModels/todoTasksApi/Response/ITodoTaskResponse";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -85,7 +86,7 @@ export function Tasks() {
                 renderInput={(params) => <TextField {...params} label="Select user" variant="outlined" fullWidth/>}
             />
             <List>
-                {tasks.map((item) => {
+                {tasks.map((item: ITodoTaskResponse) => {
                     const labelId = `checkbox-list-label-${item.todoTaskId}`;
 
                     return (

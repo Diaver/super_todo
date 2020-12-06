@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Messaging
+namespace Services
 {
     public class InvalidConfigurationException : Exception
     {

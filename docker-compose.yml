@@ -63,6 +63,15 @@ services:
       - "7200:7200"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+        
+  auth_api:
+    image: super_todo/auth_api:0.1
+    build: Users.Api
+    container_name: supertodo_auth_api
+    ports:
+      - "7300:7300"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
 
   web_app:
     image: super_todo/web_app:0.1
@@ -71,6 +80,7 @@ services:
     depends_on:
       - tasks_api
       - users_api
+      - auth_api
     ports:
       - "7000:7000"
     environment:

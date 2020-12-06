@@ -11,6 +11,7 @@ import AddIcon from '@material-ui/icons/Add';
 import {NavLink as RouterLink} from "react-router-dom";
 import {AccountCircle} from "@material-ui/icons";
 import PeopleIcon from '@material-ui/icons/People';
+import {IUserResponse} from "../../apiModels/usersApi/Response/IUserResponse";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -72,11 +73,11 @@ export function Users() {
             </Grid>
 
             <List>
-                {users.map((user) => {
+                {users.map((user: IUserResponse) => {
                     const labelId = `checkbox-list-label-${user.userId}`;
 
                     return (
-                        <ListItem key={user.userId} role={undefined} dense button className={classes.itemAdded}  component={RouterLink} to={`/user/edit/${user.userId}`}>
+                        <ListItem key={user.userId} role={undefined} dense button className={classes.itemAdded} component={RouterLink} to={`/user/edit/${user.userId}`}>
                             <ListItemIcon>
                                 <AccountCircle/>
                             </ListItemIcon>

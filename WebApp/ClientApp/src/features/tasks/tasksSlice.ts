@@ -9,7 +9,7 @@ import {TodoTaskStatus} from "../../apiModels/common/TodoTaskStatus";
 interface TasksState {
     tasks: ITodoTaskResponse[];
     users: ITodoTaskUserResponse[];
-    selectedUser: ITodoTaskUserResponse;
+    selectedUser?: ITodoTaskUserResponse;
     loading: boolean;
     text: string
 }
@@ -17,7 +17,6 @@ interface TasksState {
 const initialState: TasksState = {
     tasks: [],
     users: [],
-    selectedUser: {userId: "", name: ""},
     loading: false,
     text: ""
 };
