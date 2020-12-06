@@ -96,6 +96,16 @@ services:
     environment:
       - DOTNET_ENVIRONMENT=Production
 
+  logging_eventhandler:
+    image: super_todo/logging_eventhandler:0.1
+    build: Logging.EventHandler
+    container_name: supertodo_logging_eventHandler
+    depends_on:
+      - rabbitmq
+      - sqlserver
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+
   notifications:
     image: super_todo/notifications:0.1
     build: Notifications

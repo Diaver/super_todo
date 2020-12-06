@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifications", "Notificati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Api", "Auth.Api\Auth.Api.csproj", "{D18CCAE2-706F-469F-B7F1-4A6924EC9561}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.Database", "Logging.Database\Logging.Database.csproj", "{0053192F-0CEB-415D-92F2-4B4164DB5D00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.EventHandler", "Logging.EventHandler\Logging.EventHandler.csproj", "{764568E4-566C-4E71-A4B1-087A5F963585}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,5 +86,13 @@ Global
 		{D18CCAE2-706F-469F-B7F1-4A6924EC9561}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D18CCAE2-706F-469F-B7F1-4A6924EC9561}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D18CCAE2-706F-469F-B7F1-4A6924EC9561}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0053192F-0CEB-415D-92F2-4B4164DB5D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0053192F-0CEB-415D-92F2-4B4164DB5D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0053192F-0CEB-415D-92F2-4B4164DB5D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0053192F-0CEB-415D-92F2-4B4164DB5D00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{764568E4-566C-4E71-A4B1-087A5F963585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{764568E4-566C-4E71-A4B1-087A5F963585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{764568E4-566C-4E71-A4B1-087A5F963585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{764568E4-566C-4E71-A4B1-087A5F963585}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

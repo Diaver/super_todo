@@ -1,0 +1,1 @@
+﻿docker build -f ./Logging.EventHandler/Dockerfile -t super_todo/logging_eventhandler:0.1 .
