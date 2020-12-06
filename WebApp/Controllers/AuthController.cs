@@ -6,6 +6,7 @@ using ApiService.Models.Api.AuthApi.Response;
 using ApiService.Models.Api.Common;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebApp.Security;
 
 namespace WebApp.Controllers
 {
@@ -15,13 +16,16 @@ namespace WebApp.Controllers
     {
         private readonly ILogger<UsersController> _logger;
         private readonly IAuthApi _authApi;
+        private readonly IAuthorizedUserProvider _authorizedUserProvider;
 
         public AuthController(
             ILogger<UsersController> logger,
-            IAuthApi authApi)
+            IAuthApi authApi,
+            IAuthorizedUserProvider authorizedUserProvider)
         {
             _logger = logger;
             _authApi = authApi;
+            _authorizedUserProvider = authorizedUserProvider;
         }
 
         [HttpPost("login")]
@@ -29,11 +33,24 @@ namespace WebApp.Controllers
         {
             return _authApi.Login(loginRequest);
         }
-
+        
         [HttpGet("getByUserId/{userId}")]
         public Task<ApiResult<CurrentUser>> GetByUserId(Guid userId)
         {
-            return _authApi.GetByUserId(userId);
+            // do not call outside
+            throw new NotImplementedException();
+        }
+
+        [AuthorizeUser]
+        [HttpGet("getCurrentUser")]
+        public Task<ApiResult<CurrentUserResponse>> GetCurrentUser()
+        {
+            var currentUserResponse = new CurrentUserResponse
+            {
+                Name = _authorizedUserProvider.CurrentUser.Name
+            };
+
+            return Task.FromResult(ApiResult<CurrentUserResponse>.Ok(currentUserResponse));
         }
     }
 }

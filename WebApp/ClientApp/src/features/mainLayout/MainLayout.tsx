@@ -15,11 +15,16 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import {Box} from "@material-ui/core";
+import {Box, Button, Menu, MenuItem} from "@material-ui/core";
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleIcon from '@material-ui/icons/People';
 import {NavLink as RouterLink} from "react-router-dom";
 import {Copyright} from "./Copyright";
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import SessionService from "../../services/SessionService";
+import {useDispatch, useSelector} from "react-redux";
+import {currentUserSelector, rootLayoutSlice} from "../rootLayout/rootLayoutSlice";
+import NavigationService from "../../services/NavigationService";
 
 const drawerWidth = 240;
 
@@ -86,7 +91,10 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         active: {
             backgroundColor: theme.palette.action.selected
-        }
+        },
+        title: {
+            flexGrow: 1,
+        },
     }),
 );
 
@@ -99,8 +107,26 @@ interface IMainLayoutProps {
 export function MainLayout(props: PropsWithChildren<IMainLayoutProps>) {
     const classes = useStyles();
     const theme = useTheme();
+    const dispatch = useDispatch();
+    const currentUser = useSelector(currentUserSelector);
     const [open, setOpen] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleLogout = () => {
+        SessionService.removeSessionGuid();
+        dispatch(rootLayoutSlice.actions.logout());
+        setAnchorEl(null);
+        window.location.href= "/";
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+
+    };
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -108,6 +134,9 @@ export function MainLayout(props: PropsWithChildren<IMainLayoutProps>) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const accountMenu = Boolean(anchorEl);
+
 
     return (
         <div className={classes.root}>
@@ -130,9 +159,42 @@ export function MainLayout(props: PropsWithChildren<IMainLayoutProps>) {
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <Typography variant="h6" noWrap>
+                    <Typography variant="h6" noWrap className={classes.title}>
                         Super Todo App
                     </Typography>
+
+                    {
+                        currentUser &&
+                        <div>
+                            <Button
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleMenu}
+                                color="inherit"
+                            >
+                                {currentUser.name}
+                            </Button>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={accountMenu}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleLogout}>Log out</MenuItem>
+                            </Menu>
+                        </div>
+
+                    }
                 </Toolbar>
             </AppBar>
             <Drawer
