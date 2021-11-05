@@ -25,6 +25,7 @@ import SessionService from "../../services/SessionService";
 import {useDispatch, useSelector} from "react-redux";
 import {currentUserSelector, rootLayoutSlice} from "../rootLayout/rootLayoutSlice";
 import NavigationService from "../../services/NavigationService";
+import {Chat} from "@material-ui/icons";
 
 const drawerWidth = 240;
 
@@ -232,6 +233,12 @@ export function MainLayout(props: PropsWithChildren<IMainLayoutProps>) {
                         <ListItemText primary="Tasks"/>
                     </ListItem>
 
+                    <ListItem button component={RouterLink} to="/messenger" activeClassName={classes.active}>
+                        <ListItemIcon>
+                            <Chat/>
+                        </ListItemIcon>
+                        <ListItemText primary="Messenger"/>
+                    </ListItem>
                 </List>
                 <Divider/>
 

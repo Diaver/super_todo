@@ -8,6 +8,7 @@ import {Users} from "../features/users/Users";
 import {UserAdd} from "../features/userAdd/UserAdd";
 import {UserEdit} from "../features/userEdit/UserEdit";
 import {UserLogin} from "../features/userLogin/UserLogin";
+import { Messenger } from '../features/messenger/Messenger';
 
 export default class HistoryBrowserRouter extends BrowserRouter {
     render() {
@@ -47,6 +48,12 @@ export default class HistoryBrowserRouter extends BrowserRouter {
                         exact path="/login">
                         <MainLayout showFooter={true}>
                             <UserLogin/>
+                        </MainLayout>
+                    </Route>
+                    <Route
+                        exact path="/messenger">
+                        <MainLayout showFooter={true}>
+                            <Messenger/>
                         </MainLayout>
                     </Route>
                     <Route>

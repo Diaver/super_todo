@@ -13,7 +13,7 @@ services:
       - RABBITMQ_DEFAULT_PASS=DEBmbwkSrzy9D1T9cJfa
 
   sqlserver:
-    image: microsoft/mssql-server-linux:latest
+    image: mcr.microsoft.com/mssql/server:2019-CU13-ubuntu-20.04
     container_name: supertodo_sqlserver
     volumes:
       - sqlserverdata:/var/opt/mssql
