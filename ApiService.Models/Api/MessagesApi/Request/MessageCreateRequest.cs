@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApiService.Models.Api.MessageApi.Request
+namespace ApiService.Models.Api.MessagesApi.Request
 {
     public class MessageCreateRequest
     {

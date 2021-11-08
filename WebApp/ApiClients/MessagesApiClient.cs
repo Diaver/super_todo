@@ -4,23 +4,23 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models.Api.Common;
-using ApiService.Models.Api.MessageApi.Request;
-using ApiService.Models.Api.MessageApi.Response;
+using ApiService.Models.Api.MessagesApi.Request;
+using ApiService.Models.Api.MessagesApi.Response;
 using Microsoft.Extensions.Configuration;
 using Refit;
 
 namespace WebApp.ApiClients
 {
-    public class MessageApiClient : IMessageApi
+    public class MessagesApiClient : IMessagesApi
     {
-        private readonly IMessageApi _restClient;
+        private readonly IMessagesApi _restClient;
 
-        public MessageApiClient(IConfiguration config, HttpClient httpClient)
+        public MessagesApiClient(IConfiguration config, HttpClient httpClient)
         {
-            string apiHostAndPort = config.GetSection("APIServiceLocations").GetValue<string>("MessageApi");
-            httpClient.BaseAddress = new Uri($"http://{apiHostAndPort}/api/message");
+            string apiHostAndPort = config.GetSection("APIServiceLocations").GetValue<string>("MessagesApi");
+            httpClient.BaseAddress = new Uri($"http://{apiHostAndPort}/api/messages");
 
-            _restClient = RestService.For<IMessageApi>(httpClient);
+            _restClient = RestService.For<IMessagesApi>(httpClient);
         }
 
         public Task<ApiResult<IEnumerable<MessageResponse>>> GetByChatId(string chatId)

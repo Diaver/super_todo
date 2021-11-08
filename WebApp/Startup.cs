@@ -46,8 +46,8 @@ namespace WebApp
             services.AddHttpClient<IUsersApi, UsersApiClient>();
             services.AddHttpClient<IAuthApi, AuthApiClient>();
             services.AddHttpClient<IChatApi, ChatApiClient>();
-            services.AddHttpClient<IMessageApi, MessageApiClient>();
-            services.AddHttpClient<IContactApi, ContactApiClient>();
+            services.AddHttpClient<IMessagesApi, MessagesApiClient>();
+            services.AddHttpClient<IContactsApi, ContactsApiClient>();
 
             services.AddScoped<IAuthorizedUserProvider, AuthorizedUserProvider>();
         }
