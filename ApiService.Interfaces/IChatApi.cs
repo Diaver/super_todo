@@ -9,5 +9,6 @@ namespace ApiService.Interfaces
     {
         [Get("/get/{chatId}")]
         public Task<ApiResult<ChatResponse>> Get(string chatId);
+        
     }
 }

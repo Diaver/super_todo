@@ -1,3 +1,4 @@
+using Contacts.Api.Services;
 using Contacts.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Services;
-using Tasks.Api.Services;
 using TodoTasks.Database;
 using TodoTasks.Database.Repositories;
 
@@ -39,7 +39,7 @@ namespace Contacts.Api
         {
             services.AddScoped<IAppConfigurationProvider, AppConfigurationProvider>();
             services.AddScoped<IContactDbContextFactory, ContactDbContextFactory>();
-            services.AddScoped<ITodoTasksService, TodoTasksService>();
+            services.AddScoped<IContactsService, ContactsService>();
 
             services.AddTransient<ITodoTaskRepository, TodoTaskRepository>();
             services.AddTransient<IUsersRepository, UsersRepository>();

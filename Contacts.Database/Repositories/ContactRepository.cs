@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Contacts.Database.Repositories
 {
-    public interface IContactRepository
+    public interface IContactRepository : IRepository<Contact>
     {
-        Task<IEnumerable<ContactResponse>> GetByUserId(Guid userId);
+        Task<IEnumerable<ContactResponse>> GetByContactId(Guid contactId);
     }
     
     public class ContactRepository : BaseRepository<Contact>, IContactRepository
@@ -21,17 +21,16 @@ namespace Contacts.Database.Repositories
         {
         }
 
-        public async Task<IEnumerable<ContactResponse>> GetByUserId(Guid userId)
+        public async Task<IEnumerable<ContactResponse>> GetByContactId(Guid contactId)
         {
             await using ContactDbContext dbContext = CreateDbContext();
             
-            return await dbContext.Contacts.Where(c => c.ContactId == userId && c.IsDeleted == false)
+            return await dbContext.Contacts.Where(c => c.ContactId == contactId && c.IsDeleted == false)
                 .Select(c =>
                     new ContactResponse
                     {
                         ContactId = c.ContactId,
-                        FirstName = c.FirstName,
-                        LastName = c.LastName,
+                        Name = c.Name,
                     }).ToListAsync();
         }
     }
