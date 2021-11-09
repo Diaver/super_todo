@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiService.Models.Api.Common;
-using ApiService.Models.Api.MessageApi.Request;
-using ApiService.Models.Api.MessageApi.Response;
+using ApiService.Models.Api.MessagesApi.Request;
+using ApiService.Models.Api.MessagesApi.Response;
 using Refit;
 
 namespace ApiService.Interfaces
 {
-    public interface IMessageApi
+    public interface IMessagesApi
     {
         [Get("/getByChatId/{chatId}")]
         Task<ApiResult<IEnumerable<MessageResponse>>> GetByChatId(string chatId);

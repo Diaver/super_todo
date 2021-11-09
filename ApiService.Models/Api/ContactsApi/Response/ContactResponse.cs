@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApiService.Models.Api.ContactApi.Response
+namespace ApiService.Models.Api.ContactsApi.Response
 {
     public class ContactResponse
     {

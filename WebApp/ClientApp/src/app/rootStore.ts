@@ -6,6 +6,7 @@ import userEditReducer from '../features/userEdit/userEditSlice';
 import userLoginReducer from '../features/userLogin/userLoginSlice';
 import rootLayoutReducer from "../features/rootLayout/rootLayoutSlice";
 import messengerReducer from "../features/messenger/messengerSlice";
+import chatReducer from "../features/chat/chatSlice";
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
     userEdit: userEditReducer,
     userLogin: userLoginReducer,
     rootLayout: rootLayoutReducer,
-    messenger: messengerReducer
+    messenger: messengerReducer,
+    chat: chatReducer
   },
 });
 
