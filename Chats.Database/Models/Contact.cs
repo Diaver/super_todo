@@ -12,11 +12,8 @@ namespace Chats.Database.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ContactId { get; set; }
         
-        public string FirstName { get; set; }
-        
-        public string LastName { get; set; }
-        
-        
+        public string Name { get; set; }
+
         public override Guid GetPrimaryKey()
         {
             return ContactId;

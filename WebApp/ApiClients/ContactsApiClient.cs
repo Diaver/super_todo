@@ -26,5 +26,10 @@ namespace WebApp.ApiClients
         {
             return _restClient.GetAll();
         }
+
+        public Task<ApiResult<IEnumerable<ContactResponse>>> GetByContactId(string contactId)
+        {
+            return _restClient.GetByContactId(contactId);
+        }
     }
 }

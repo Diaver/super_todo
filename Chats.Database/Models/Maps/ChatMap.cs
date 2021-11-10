@@ -7,7 +7,6 @@ namespace Chats.Database.Models.Maps
     {
         public void Configure(EntityTypeBuilder<Chat> builder)
         {
-
         }
     }
 }
