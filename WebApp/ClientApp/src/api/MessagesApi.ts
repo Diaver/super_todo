@@ -1,7 +1,7 @@
 ﻿import axios, {AxiosPromise} from "axios";
 import {IApiResult} from "../apiModels/common/IApiResult";
 import SessionService from "../services/SessionService";
-import {IMessageResponse} from "../apiModels/messagesApi/IMessageResponse";
+import {IMessageResponse} from "../apiModels/messagesApi/Response/IMessageResponse";
 
 class MessagesApi {
     //Chat api will get the chat with all messages

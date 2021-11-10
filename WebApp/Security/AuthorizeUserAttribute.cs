@@ -1,5 +1,6 @@
 using System;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models.Api.AuthApi.Response;
 using ApiService.Models.Api.Common;
@@ -27,7 +28,7 @@ namespace WebApp.Security
                 string userId = identity.FindFirst(ClaimTypes.Name).Value;
                 
                 IAuthApi userLoginService = (IAuthApi) context.HttpContext.RequestServices.GetService(typeof(IAuthApi));
-                var userApiResult = userLoginService.GetByUserId(new Guid(userId));
+                Task<ApiResult<CurrentUser>> userApiResult = userLoginService.GetByUserId(new Guid(userId));
 
                 IAuthorizedUserProvider authorizedUserProvider = (IAuthorizedUserProvider) context.HttpContext.RequestServices.GetService(typeof(IAuthorizedUserProvider));
                 authorizedUserProvider.CurrentUser = userApiResult.ConfigureAwait(false).GetAwaiter().GetResult().Data;

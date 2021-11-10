@@ -1,21 +1,22 @@
 import * as React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {Avatar, List, ListItem, ListItemAvatar, ListItemText, ListSubheader} from "@mui/material";
+import {List, ListSubheader} from "@mui/material";
 import {chatSlice, contactsSelector, loadContactsAsync, searchTextSelector} from "./chatSlice";
 import {useEffect} from "react";
+import {Contact} from "./Contact";
 
-export function AllContacts() {
+export function Contacts() {
     const contacts = useSelector(contactsSelector);
     const searchText = useSelector(searchTextSelector);
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
         dispatch(loadContactsAsync());
     }, []);
-    
-    useEffect( () => {
+
+    useEffect(() => {
         dispatch(chatSlice.actions.setFilteredContacts(searchText));
-    }, [searchText])
+    }, [searchText]);
 
     return (
         <List>
@@ -23,14 +24,7 @@ export function AllContacts() {
                 All contacts
             </ListSubheader>
             {contacts.map(({contactId, name}) => (
-                <React.Fragment key={contactId}>
-                    <ListItem button>
-                        <ListItemAvatar>
-                            <Avatar alt="Profile Picture"/>
-                        </ListItemAvatar>
-                        <ListItemText primary={name}/>
-                    </ListItem>
-                </React.Fragment>
+                <Contact key={contactId} contactId={contactId} name={name}/>
             ))}
         </List>
     );

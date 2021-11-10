@@ -29,7 +29,7 @@ namespace Auth.Api.Services
                DateTime expirationDate = DateTime.UtcNow.AddHours(12);
                string sessionToken = _jwtTokenGenerator.GetSessionToken(_fakeUserIdGuid, expirationDate);
                
-               LoginResponse loginResponse = new LoginResponse
+               var loginResponse = new LoginResponse
                {
                    Name = _fakeUserName,
                    ExpirationDate = expirationDate,

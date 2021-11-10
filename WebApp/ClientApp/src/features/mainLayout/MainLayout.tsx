@@ -233,7 +233,7 @@ export function MainLayout(props: PropsWithChildren<IMainLayoutProps>) {
                         <ListItemText primary="Tasks"/>
                     </ListItem>
 
-                    <ListItem button component={RouterLink} to="/messenger" activeClassName={classes.active}>
+                    <ListItem button component={RouterLink} to="/chat" activeClassName={classes.active}>
                         <ListItemIcon>
                             <Chat/>
                         </ListItemIcon>

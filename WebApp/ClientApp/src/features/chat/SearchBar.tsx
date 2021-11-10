@@ -16,7 +16,7 @@ export function SearchBar() {
                            <InputAdornment position="end">
                                <Search/>
                            </InputAdornment>
-                       ),
+                       )
                    }}/>
     );
 }

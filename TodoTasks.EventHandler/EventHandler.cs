@@ -59,6 +59,8 @@ namespace TodoTasks.EventHandler
                     case MessageType.UserDeleted:
                         await HandleDeletedAsync(messageObject.ToObject<UserAddedOrUpdated>());
                         break;
+                    default:
+                        return true;
                 }
             }
             catch (Exception ex)
