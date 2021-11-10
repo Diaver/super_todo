@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using ApiService.Models.Api.Common;
 using ApiService.Models.Api.ContactApi.Request;
-using ApiService.Models.Api.ContactApi.Response;
+using ApiService.Models.Api.ContactsApi.Response;
 using Refit;
 
 namespace ApiService.Interfaces

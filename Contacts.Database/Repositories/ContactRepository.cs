@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ApiService.Models.Api.ContactApi.Response;
+using ApiService.Models.Api.ContactsApi.Response;
 using Contacts.Database.Base;
 using Contacts.Database.Models;
 using Microsoft.EntityFrameworkCore;
