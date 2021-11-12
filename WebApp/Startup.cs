@@ -45,6 +45,7 @@ namespace WebApp
             services.AddHttpClient<ITodoTasksApi, TodoTasksApiClient>();
             services.AddHttpClient<IUsersApi, UsersApiClient>();
             services.AddHttpClient<IAuthApi, AuthApiClient>();
+            services.AddHttpClient<ISignupApi, SignupApiClient>();
             services.AddHttpClient<IChatApi, ChatApiClient>();
             services.AddHttpClient<IMessagesApi, MessagesApiClient>();
             services.AddHttpClient<IContactsApi, ContactsApiClient>();

@@ -1,15 +1,14 @@
-import React from 'react';
+﻿import React from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import {Backdrop, Button, Container, Grid, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 
-import {loadingSelector, loginAsync, userLoginSlice, userSelector} from "./userLoginSlice";
+import {loadingSelector, loginAsync, signupslice, userSelector} from "./signupslice";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export function UserLogin() {
+export function Signup() {
 
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -77,6 +76,25 @@ export function UserLogin() {
                     <EmailIcon/>
                     <TextValidator
                         variant="outlined"
+                        name="Username"
+                        className={classes.textBoxWithIcon}
+                        fullWidth
+                        label="Email"
+                        placeholder="Please enter user's email"
+                        helperText="email: admin@supertodo.com"
+                        value={user.email}
+                        onChange={(e: any) => dispatch(signupslice.actions.updateFieldValue({
+                            field: "email",
+                            value: e.target.value
+                        }))}
+                        validators={['required', 'isEmail']}
+                        errorMessages={["This field is required", 'Email is not valid']}
+                    />
+                </div>
+                <div className={classes.textBoxWithIconContainer}>
+                    <EmailIcon/>
+                    <TextValidator
+                        variant="outlined"
                         name="Email"
                         className={classes.textBoxWithIcon}
                         fullWidth
@@ -84,7 +102,7 @@ export function UserLogin() {
                         placeholder="Please enter user's email"
                         helperText="email: admin@supertodo.com"
                         value={user.email}
-                        onChange={(e: any) => dispatch(userLoginSlice.actions.updateFieldValue({
+                        onChange={(e: any) => dispatch(signupslice.actions.updateFieldValue({
                             field: "email",
                             value: e.target.value
                         }))}
@@ -107,7 +125,7 @@ export function UserLogin() {
                         placeholder="Please enter Password (admin)"
                         helperText="password: admin"
                         value={user.password}
-                        onChange={(e: any) => dispatch(userLoginSlice.actions.updateFieldValue({
+                        onChange={(e: any) => dispatch(signupslice.actions.updateFieldValue({
                             field: "password",
                             value: e.target.value
                         }))}
@@ -119,12 +137,6 @@ export function UserLogin() {
                 </div>
                 <div className={classes.textBoxWithIconContainer}>
                     <Button startIcon={<LockIcon/>} type="submit" color="primary" fullWidth>Login</Button>
-                    <Link to="/signup">
-                        <Button>
-                            <p>Sign up</p>
-                        </Button>
-                    </Link>
-
                 </div>
             </ValidatorForm>
         </Container>
