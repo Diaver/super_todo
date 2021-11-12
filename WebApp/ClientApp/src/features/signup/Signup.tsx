@@ -66,7 +66,7 @@ export function Signup() {
 
                     <Grid item>
                         <Typography variant={"h4"}>
-                            <LockIcon/> Login
+                            <LockIcon/> Sign up
                         </Typography>
                     </Grid>
                 </Grid>
@@ -136,7 +136,7 @@ export function Signup() {
                     />
                 </div>
                 <div className={classes.textBoxWithIconContainer}>
-                    <Button startIcon={<LockIcon/>} type="submit" color="primary" fullWidth>Login</Button>
+                    <Button startIcon={<LockIcon/>} type="submit" color="primary" fullWidth>Submit</Button>
                 </div>
             </ValidatorForm>
         </Container>
