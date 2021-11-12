@@ -35,6 +35,7 @@
     <ItemGroup>
       <ProjectReference Include="..\ApiService.Interfaces\ApiService.Interfaces.csproj" />
       <ProjectReference Include="..\ApiService.Models\ApiService.Models.csproj" />
+      <ProjectReference Include="..\Auth.Database\Auth.Database.csproj" />
       <ProjectReference Include="..\Services\Services.csproj" />
     </ItemGroup>
 

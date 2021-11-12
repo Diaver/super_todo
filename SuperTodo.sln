@@ -40,6 +40,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages.Api", "Messages.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages.Database", "Messages.Database\Messages.Database.csproj", "{07DEF779-6543-4FD3-9F6E-CB19C1F47009}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.EventHandler", "Auth.EventHandler\Auth.EventHandler.csproj", "{5F78D2B2-42F7-4695-98F6-4488A2587E59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Database", "Auth.Database\Auth.Database.csproj", "{DE52CE0A-0FA8-4436-8434-17751EE65760}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,5 +134,13 @@ Global
 		{07DEF779-6543-4FD3-9F6E-CB19C1F47009}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07DEF779-6543-4FD3-9F6E-CB19C1F47009}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07DEF779-6543-4FD3-9F6E-CB19C1F47009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F78D2B2-42F7-4695-98F6-4488A2587E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F78D2B2-42F7-4695-98F6-4488A2587E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F78D2B2-42F7-4695-98F6-4488A2587E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F78D2B2-42F7-4695-98F6-4488A2587E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE52CE0A-0FA8-4436-8434-17751EE65760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE52CE0A-0FA8-4436-8434-17751EE65760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE52CE0A-0FA8-4436-8434-17751EE65760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE52CE0A-0FA8-4436-8434-17751EE65760}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

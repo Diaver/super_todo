@@ -9,11 +9,11 @@ namespace Contacts.Database.Base
 {
 public abstract class BaseRepository<TEntity> where TEntity : DbEntity
     {
-        private readonly IContactDbContextFactory _dbContextFactory;
+        private readonly IContactsDbContextFactory _dbContextFactory;
 
         public DbSet<TEntity> Entities { get; set; }
 
-        protected BaseRepository(IContactDbContextFactory dbContextFactory)
+        protected BaseRepository(IContactsDbContextFactory dbContextFactory)
         {
             _dbContextFactory = dbContextFactory;
         }

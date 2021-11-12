@@ -2,7 +2,7 @@
 
 namespace Contacts.Api.Services
 {
-    public interface IContactsService: IContactApi
+    public interface IContactsService: IContactsApi
     {
     }
 }

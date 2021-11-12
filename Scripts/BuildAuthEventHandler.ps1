@@ -1,0 +1,1 @@
+﻿docker build -f ./Auth.EventHandler/Dockerfile -t super_todo/auth_eventhandler:0.1 .

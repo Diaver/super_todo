@@ -4,26 +4,26 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS  build-env
 WORKDIR /app
 
 # Copy necessary files and restore as distinct layer
-COPY ["TodoTasks.Api/TodoTasks.Api.csproj", "TodoTasks.Api/"]
-COPY ["TodoTasks.Database/TodoTasks.Database.csproj", "TodoTasks.Database/"]
+COPY ["Contacts.Api/Contacts.Api.csproj", "Contacts.Api/"]
+COPY ["Contacts.Database/Contacts.Database.csproj", "Contacts.Database/"]
 COPY ["ApiService.Interfaces/ApiService.Interfaces.csproj", "ApiService.Interfaces/"]
 COPY ["ApiService.Models/ApiService.Models.csproj", "ApiService.Models/"]
 COPY ["Services/Services.csproj", "Services/"]
 
-RUN dotnet restore "TodoTasks.Api/TodoTasks.Api.csproj"
+RUN dotnet restore "Contacts.Api/Contacts.Api.csproj"
 
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish "TodoTasks.Api/TodoTasks.Api.csproj" -c Release -o out
+RUN dotnet publish "Contacts.Api/Contacts.Api.csproj" -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
 COPY --from=build-env /app/out .
 
 # Expose ports
-EXPOSE 7100/tcp
-ENV ASPNETCORE_URLS http://*:7100
+EXPOSE 7400/tcp
+ENV ASPNETCORE_URLS http://*:7400
 
 # Start
-ENTRYPOINT ["dotnet", "TodoTasks.Api.dll"]
+ENTRYPOINT ["dotnet", "Contacts.Api.dll"]

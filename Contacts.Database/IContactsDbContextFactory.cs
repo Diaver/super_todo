@@ -1,6 +1,6 @@
 ﻿namespace Contacts.Database
 {
-    public interface IContactDbContextFactory
+    public interface IContactsDbContextFactory
     {
         ContactDbContext Create();
     }

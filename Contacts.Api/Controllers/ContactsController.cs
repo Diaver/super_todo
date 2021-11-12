@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models.Api.Common;
@@ -13,7 +12,7 @@ namespace Contacts.Api.Controllers
 {
     [ApiController]
     [Route("/api/[controller]")]
-    public class ContactsController : ControllerBase, IContactApi
+    public class ContactsController : ControllerBase, IContactsApi
     {
         private readonly ILogger<ContactsController> _logger;
         private readonly IContactsService _contactsService;
@@ -37,7 +36,7 @@ namespace Contacts.Api.Controllers
         
 
         [HttpPut("add")]
-        public Task<ApiResult<ContactResponse>> Add([FromBody] ContactCreateRequest contactCreateRequest)
+        public Task<ApiResult> Add([FromBody] ContactCreateRequest contactCreateRequest)
         {
             return _contactsService.Add(contactCreateRequest);
         }

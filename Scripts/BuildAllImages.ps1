@@ -5,3 +5,5 @@ docker build -f ./TodoTasks.EventHandler/Dockerfile -t super_todo/todotasks_even
 docker build -f ./Notifications/Dockerfile -t super_todo/notifications:0.1 .
 docker build -f ./Auth.Api/Dockerfile -t super_todo/auth_api:0.1 .
 docker build -f ./Logging.EventHandler/Dockerfile -t super_todo/logging_eventhandler:0.1 .
+docker build -f ./Contacts.Api/Dockerfile -t super_todo/contacts_api:0.1 .
+docker build -f ./Auth.EventHandler/Dockerfile -t super_todo/auth_eventhandler:0.1 .

@@ -8,6 +8,7 @@ COPY ["Auth.Api/Auth.Api.csproj", "Auth.Api/"]
 COPY ["ApiService.Interfaces/ApiService.Interfaces.csproj", "ApiService.Interfaces/"]
 COPY ["ApiService.Models/ApiService.Models.csproj", "ApiService.Models/"]
 COPY ["Services/Services.csproj", "Services/"]
+COPY ["Auth.Database/Auth.Database.csproj", "Auth.Database/"]
 
 RUN dotnet restore "Auth.Api/Auth.Api.csproj"
 

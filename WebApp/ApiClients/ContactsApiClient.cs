@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ApiService.Interfaces;
 using ApiService.Models.Api.Common;
+using ApiService.Models.Api.ContactApi.Request;
 using ApiService.Models.Api.ContactsApi.Response;
 using Microsoft.Extensions.Configuration;
 using Refit;
@@ -30,6 +31,21 @@ namespace WebApp.ApiClients
         public Task<ApiResult<IEnumerable<ContactResponse>>> GetByContactId(string contactId)
         {
             return _restClient.GetByContactId(contactId);
+        }
+
+        public Task<ApiResult> Add(ContactCreateRequest contactCreateRequest)
+        {
+            return _restClient.Add(contactCreateRequest);
+        }
+
+        public Task<ApiResult> Delete(ContactIdRequest contactIdRequest)
+        {
+            return _restClient.Delete(contactIdRequest);
+        }
+
+        public Task<ApiResult> Complete(ContactIdRequest contactIdRequest)
+        {
+            return _restClient.Complete(contactIdRequest);
         }
     }
 }

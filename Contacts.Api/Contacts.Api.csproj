@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <LangVersion>8</LangVersion>
-        <RootNamespace>Tasks.Api</RootNamespace>
+        <RootNamespace>Contacts.Api</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -32,7 +32,7 @@
       <ProjectReference Include="..\ApiService.Interfaces\ApiService.Interfaces.csproj" />
       <ProjectReference Include="..\ApiService.Models\ApiService.Models.csproj" />
       <ProjectReference Include="..\Contacts.Database\Contacts.Database.csproj" />
-      <ProjectReference Include="..\TodoTasks.Database\TodoTasks.Database.csproj" />
+      <ProjectReference Include="..\Messaging\Messaging.csproj" />
     </ItemGroup>
 
 </Project>

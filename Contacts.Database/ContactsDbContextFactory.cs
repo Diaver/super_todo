@@ -2,11 +2,11 @@
 
 namespace Contacts.Database
 {
-    public class ContactDbContextFactory: IContactDbContextFactory
+    public class ContactsDbContextFactory: IContactsDbContextFactory
     {
         private readonly IAppConfigurationProvider _appConfigurationProvider;
 
-        public ContactDbContextFactory(IAppConfigurationProvider appConfigurationProvider)
+        public ContactsDbContextFactory(IAppConfigurationProvider appConfigurationProvider)
         {
             _appConfigurationProvider = appConfigurationProvider;
         }

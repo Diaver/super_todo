@@ -16,7 +16,7 @@ namespace Contacts.Database.Repositories
     
     public class ContactRepository : BaseRepository<Contact>, IContactRepository
     {
-        public ContactRepository(IContactDbContextFactory contextManager)
+        public ContactRepository(IContactsDbContextFactory contextManager)
             : base(contextManager)
         {
         }

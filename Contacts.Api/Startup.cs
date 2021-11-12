@@ -1,5 +1,7 @@
 using Contacts.Api.Services;
 using Contacts.Database;
+using Contacts.Database.Repositories;
+using Messaging.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +11,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Services;
-using TodoTasks.Database;
-using TodoTasks.Database.Repositories;
 
 namespace Contacts.Api
 {
@@ -33,16 +33,16 @@ namespace Contacts.Api
 
             RegisterServices(services);
             ApplyMigrations(services);
+            SetupRabbitMq(services);
         }
 
         private void RegisterServices(IServiceCollection services)
         {
             services.AddScoped<IAppConfigurationProvider, AppConfigurationProvider>();
-            services.AddScoped<IContactDbContextFactory, ContactDbContextFactory>();
+            services.AddScoped<IContactsDbContextFactory, ContactsDbContextFactory>();
             services.AddScoped<IContactsService, ContactsService>();
 
-            services.AddTransient<ITodoTaskRepository, TodoTaskRepository>();
-            services.AddTransient<IUsersRepository, UsersRepository>();
+            services.AddTransient<IContactRepository, ContactRepository>();
         }
 
         private void ConfigureLogging()
@@ -53,12 +53,17 @@ namespace Contacts.Api
                 .CreateLogger();
         }
 
+        private void SetupRabbitMq(IServiceCollection services)
+        {
+            services.UseRabbitMqMessagePublisher(Configuration);
+        }
+
         private void ApplyMigrations(IServiceCollection services)
         {
             ServiceProvider sp = services.BuildServiceProvider();
-            var dbContextFactory = sp.GetService<ITodoTasksDbContextFactory>();
+            var dbContextFactory = sp.GetService<IContactsDbContextFactory>();
 
-            using TodoTasksDbContext dbContext = dbContextFactory.Create();
+            using ContactDbContext dbContext = dbContextFactory.Create();
             dbContext.Database.Migrate();
         }
 
@@ -73,7 +78,7 @@ namespace Contacts.Api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoTasks.Api v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contacts.Api v1");
                 c.RoutePrefix = "swagger";
             });
 

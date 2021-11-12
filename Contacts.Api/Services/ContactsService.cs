@@ -6,16 +6,21 @@ using ApiService.Models.Api.ContactApi.Request;
 using ApiService.Models.Api.ContactsApi.Response;
 using Contacts.Database.Models;
 using Contacts.Database.Repositories;
+using Messaging;
+using Messaging.Interfaces;
+using Serilog;
 
 namespace Contacts.Api.Services
 {
     public class ContactsService : IContactsService
     {
         private readonly IContactRepository _contactRepository;
+        private readonly IMessagePublisher _messagePublisher;
 
-        public ContactsService(IContactRepository contactRepository)
+        public ContactsService(IContactRepository contactRepository, IMessagePublisher messagePublisher)
         {
             _contactRepository = contactRepository;
+            _messagePublisher = messagePublisher;
         }
 
         public async Task<ApiResult<IEnumerable<ContactResponse>>> GetAll()
@@ -37,7 +42,7 @@ namespace Contacts.Api.Services
             return ApiResult<IEnumerable<ContactResponse>>.Ok(contactResponses);
         }
 
-        public async Task<ApiResult<ContactResponse>> Add(ContactCreateRequest contactCreateRequest)
+        public async Task<ApiResult> Add(ContactCreateRequest contactCreateRequest)
         {
             Contact contact = await _contactRepository.CreateAsync(new Contact
             {
@@ -45,11 +50,10 @@ namespace Contacts.Api.Services
                 Name = contactCreateRequest.Name
             });
 
-            return ApiResult<ContactResponse>.Ok(new ContactResponse
-            {
-                ContactId = contact.ContactId,
-                Name = contact.Name,
-            });
+            Log.Information("Contacts.Api: Contact added {ContactId}, {Name}, {Email}", contactCreateRequest.ContactId, contactCreateRequest.Name, contactCreateRequest.Email);
+            await _messagePublisher.PublishMessageAsync(MessageType.ContactAdded, contactCreateRequest, "");
+
+            return ApiResult.Ok();
         }
 
         public async Task<ApiResult> Delete(ContactIdRequest contactIdRequest)

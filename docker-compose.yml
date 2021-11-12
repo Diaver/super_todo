@@ -66,10 +66,25 @@ services:
         
   auth_api:
     image: super_todo/auth_api:0.1
-    build: Users.Api
+    build: Auth.Api
     container_name: supertodo_auth_api
+    depends_on:
+      - sqlserver
     ports:
       - "7300:7300"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+
+  contacts_api:
+    image: super_todo/contacts_api:0.1
+    build: Contacts.Api
+    container_name: supertodo_contacts_api
+    depends_on:
+      - rabbitmq
+      - sqlserver
+      - auth_eventhandler
+    ports:
+      - "7400:7400"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
 
@@ -81,6 +96,7 @@ services:
       - tasks_api
       - users_api
       - auth_api
+      - contacts_api
     ports:
       - "7000:7000"
     environment:
@@ -90,6 +106,16 @@ services:
     image: super_todo/todotasks_eventhandler:0.1
     build: TodoTasks.EventHandler
     container_name: supertodo_todotasks_eventHandler
+    depends_on:
+      - rabbitmq
+      - sqlserver
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+
+  auth_eventhandler:
+    image: super_todo/auth_eventhandler:0.1
+    build: Auth.EventHandler
+    container_name: supertodo_auth_eventHandler
     depends_on:
       - rabbitmq
       - sqlserver

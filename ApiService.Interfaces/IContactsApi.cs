@@ -7,7 +7,7 @@ using Refit;
 
 namespace ApiService.Interfaces
 {
-    public interface IContactApi
+    public interface IContactsApi
     {
         [Get("/getAll")]
         Task<ApiResult<IEnumerable<ContactResponse>>> GetAll();
@@ -16,7 +16,7 @@ namespace ApiService.Interfaces
         Task<ApiResult<IEnumerable<ContactResponse>>> GetByContactId(string contactId);
         
         [Put("/add")]
-        Task<ApiResult<ContactResponse>> Add(ContactCreateRequest contactCreateRequest);
+        Task<ApiResult> Add(ContactCreateRequest contactCreateRequest);
         
         [Put("/delete")]
         Task<ApiResult> Delete(ContactIdRequest contactIdRequest);
