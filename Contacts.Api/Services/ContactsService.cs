@@ -62,24 +62,10 @@ namespace Contacts.Api.Services
 
             if (contact == null)
             {
-                return ApiResult.Bad(ErrorMessagesEnum.TodoTaskNotFound, "Todo Task not found");
+                return ApiResult.Bad(ErrorMessagesEnum.ContactNotFound, "Contact not found");
             }
 
             await _contactRepository.RemoveAsync(contact.ContactId);
-
-            return ApiResult.Ok();
-        }
-
-        public async Task<ApiResult> Complete(ContactIdRequest contactIdRequest)
-        {
-            Contact contact = await _contactRepository.FindAsync(contactIdRequest.ContactId);
-
-            if (contact == null)
-            {
-                return ApiResult.Bad(ErrorMessagesEnum.TodoTaskNotFound, "Todo Task not found");
-            }
-            
-            await _contactRepository.UpdateAsync(contact);
 
             return ApiResult.Ok();
         }

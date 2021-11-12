@@ -20,8 +20,5 @@ namespace ApiService.Interfaces
         
         [Put("/delete")]
         Task<ApiResult> Delete(ContactIdRequest contactIdRequest);
-        
-        [Put("/complete")]
-        Task<ApiResult>Complete(ContactIdRequest contactIdRequest);
     }
 }

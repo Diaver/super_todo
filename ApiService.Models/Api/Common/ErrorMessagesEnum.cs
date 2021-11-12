@@ -4,6 +4,7 @@
     {
         UserNotFound = 0,
         TodoTaskNotFound = 1,
-        LoginFailed = 2
+        LoginFailed = 2,
+        ContactNotFound = 3
     }
 }

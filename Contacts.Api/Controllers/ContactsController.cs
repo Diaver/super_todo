@@ -28,6 +28,7 @@ namespace Contacts.Api.Controllers
         {
             return _contactsService.GetAll();
         }
+
         [HttpGet("getByContactId/{contactId}")]
         public Task<ApiResult<IEnumerable<ContactResponse>>> GetByContactId(string contactId)
         {
@@ -45,12 +46,6 @@ namespace Contacts.Api.Controllers
         public Task<ApiResult> Delete([FromBody] ContactIdRequest contactIdRequest)
         {
             return _contactsService.Delete(contactIdRequest);
-        }
-
-        [HttpPut("complete")]
-        public Task<ApiResult> Complete([FromBody] ContactIdRequest contactIdRequest)
-        {
-            return _contactsService.Complete(contactIdRequest);
         }
     }
 }

@@ -42,10 +42,5 @@ namespace WebApp.ApiClients
         {
             return _restClient.Delete(contactIdRequest);
         }
-
-        public Task<ApiResult> Complete(ContactIdRequest contactIdRequest)
-        {
-            return _restClient.Complete(contactIdRequest);
-        }
     }
 }
