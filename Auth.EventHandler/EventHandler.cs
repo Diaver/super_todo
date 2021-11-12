@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,9 +8,11 @@ using Auth.Database.Repositories;
 using Messaging;
 using Messaging.Interfaces;
 using Messaging.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Linq;
 using Serilog;
+using Services;
 
 namespace Auth.EventHandler
 {
@@ -17,11 +20,13 @@ namespace Auth.EventHandler
     {
         private readonly IMessageHandler _messageHandler;
         private readonly IContactsRepository _contactsRepository;
+        private readonly IAppConfigurationProvider _appConfigurationProvider;
 
-        public EventHandler(IMessageHandler messageHandler, IContactsRepository contactsRepository)
+        public EventHandler(IMessageHandler messageHandler, IContactsRepository contactsRepository, IAppConfigurationProvider appConfigurationProvider)
         {
             _messageHandler = messageHandler;
             _contactsRepository = contactsRepository;
+            _appConfigurationProvider = appConfigurationProvider;
         }
 
         public void Start()
@@ -84,7 +89,18 @@ namespace Auth.EventHandler
 
         private string ToHash(string value)
         {
-            return value;
+            string key = _appConfigurationProvider.Configuration.GetValue<string>("EncryptionSecretKey");
+            using (HMACSHA256 sha256Hash = new HMACSHA256(Encoding.UTF8.GetBytes(key)))  
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(value));  
+  
+                StringBuilder builder = new StringBuilder();  
+                for (int i = 0; i < bytes.Length; i++)  
+                {  
+                    builder.Append(bytes[i].ToString("x2"));  
+                }  
+                return builder.ToString();  
+            }  
         }
         
         private string GenerateSalt()  
